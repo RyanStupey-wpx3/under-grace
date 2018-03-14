@@ -1,11 +1,11 @@
 module.exports = {
     //controllers purpose is to controll data flow from DB
-        create:(req, res, next) => {
+        createPosts:(req, res, next) => {
             const dbInstsance = req.app.get('db');
-            let {prod_name, prod_price} = req.body
+            let {post_user, post_date, title, main_content, graphic} = req.body
     
-            dbInstsance.create_product([prod_name, prod_price])
-            .then(test_datanew => res.status(200).send(test_datanew))
+            dbInstsance.create_post([post_user, post_date, title, main_content, graphic])
+            .then(post => res.status(200).send(post))
             .catch((err) => {
                 console.log('err', err)
             });
@@ -20,13 +20,11 @@ module.exports = {
             .catch(()=> res.status(500).send());
         },
     
-        getBins:(req, res) => {
+        getPosts:(req, res) => {
             const dbInstsance = req.app.get('db');
     
-            dbInstsance.get_bins()
-            .then(bins => res.status(200).send(bins))
-
-            .catch((err) => console.log('err', err));
+            dbInstsance.get_posts()
+            .then(posts => res.status(200).send(posts)).catch((err) => console.log('err', err));
         },
     
         update:(req, res, next) => {
@@ -37,12 +35,12 @@ module.exports = {
             .then(() => res.status(200).send())
             .catch(() => res.status(500).send());
         },
-        delete:(req, res, next) => {
+        delete_post:(req, res, next) => {
             const dbInstance = req.app.get('db')
             const {params} = req;
             
     
-            dbInstance.delete_products([params.id])
+            dbInstance.delete_post([params.id])
             .then(() => res.status(200).send() )
             .catch(() => res.status(200).send() );
         },

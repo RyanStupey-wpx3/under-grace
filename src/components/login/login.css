@@ -1,0 +1,14 @@
+.outer-container{
+    border: 0.2px solid;
+    text-align: center;
+    height: 60rem;
+    background-image: url('https://salemnet.vo.llnwd.net/media/cms/CW/faith/33581-fire-clouds.1200w.tn.jpg');
+    background-size: cover;
+}
+
+.outer-container h1 {
+    padding-top: 1.5rem;
+    color: #fff;
+    font-family: 'Merienda', cursive;
+    text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 0px 20px, red 0 0px 20px;
+}

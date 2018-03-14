@@ -1,0 +1,71 @@
+.inputContainer{
+    border: 2px solid lightgreen;
+    margin: 0 auto;
+    height: 25rem;
+    width: 70%;
+
+}
+
+/* .pictureInput{
+    position: relative;
+    left: 0.3rem;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+} */
+
+.usernameInput{
+    position: relative;
+    float: right;
+    width: 70%;
+    display: block;
+}
+
+.dateInput{
+    position: relative;
+    float: right;
+    width: 70%;
+    display: block;
+}
+
+.titleInput{
+    position: relative;
+    top: 0rem;
+    float: right;
+    height: 1.4rem;
+    width: 70%;
+}
+
+.blogContent{
+    position: relative;
+    display: block;
+    /* left: 9rem; */
+    float: right;
+    top: 0rem;
+    /* margin: 0 auto; */
+    height: 11.5rem;
+    width: 70%;
+    overflow: hidden;
+    resize: none;
+}
+.submitButton {
+    border: 2px solid yellow;
+    position: relative;
+    top:-12rem;
+    left: 53rem;
+}
+
+.postForm {
+    border: 5px solid red;
+    height: 16rem;
+}
+.dropZoneDiv {
+    display: inline;
+    position: absolute;
+}
+
+.uploadedImage {
+    border: 4px solid green;
+    height: 16rem;
+    width: 14rem;
+}

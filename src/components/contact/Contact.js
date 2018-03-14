@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import InputInfo from './InputInfo'
 
 class Home extends Component {
     render() {
         return (
            <div className="body">
-                <div className="central">
                 <header></header>
-                <div></div>
+                <div className="central">
+                <div>
+                    <h4>email</h4>
+                    <h4>:</h4>
+                    <InputInfo/>
+                    <h4></h4>
+                </div>
                 </div>
                 <footer></footer>
            </div>

@@ -5,20 +5,39 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
+    "cloudinary": "^1.10.0",
     "cors": "^2.8.4",
+    "cors-prefetch-middleware": "^1.0.0",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "images-upload-middleware": "^1.1.1",
     "massive": "^4.6.4",
     "nodemailer": "^4.6.0",
+    "now": "^10.1.5",
+    "nuka-carousel": "^3.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.9",
+    "react-images-upload": "^1.0.5",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "superagent": "^3.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/auth/callback": {
+      "target": "http://localhost:3535"
+    },
+    "/api": {
+      "target": "http://localhost:3535"
+    }
   }
 }

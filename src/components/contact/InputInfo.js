@@ -54,9 +54,9 @@ class InputInfo extends Component {
                         <input type="text" onChange={(e) => this.getState('message', e.target.value)} placeholder="message"/>
                         <input type="submit"/>
                     </form>
-                    <h4>{name}</h4>
-                    <h4>{email}</h4>
-                    <h4>{subject}</h4>
+                    <h4>name: {name}</h4>
+                    <h4>email: {email}</h4>
+                    <h4>subject: {subject}</h4>
                     
                 </div>
                 </div>

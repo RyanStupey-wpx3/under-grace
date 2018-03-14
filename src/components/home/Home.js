@@ -1,13 +1,41 @@
 import React, { Component } from 'react';
 import './home.css'
+import '../main.css'
+import axios from 'axios'
 import InputInfo from '../contact/InputInfo'
+import {Route, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {log_in} from '../../redux/reducer';
+import ImageCrsl from '../Carousel';
 class Home extends Component {
+    constructor(props) {
+        super(props)
+
+    }
+    componentDidMount(){
+        axios.get('/api/user-data')
+        .then((resp) => {
+            this.props.log_in(resp.data.user)
+            console.log('this.props.user', this.props.user)
+        })
+        
+    }
+
     render() {
+        console.log('this.props.user', this.props.user)
         return (
+            
            <div className="body">
                 <div className="central">
-                <header><h1>Under Grace</h1></header>
-                <div className="hero"><img src={require('../../images/fire-heart.jpg')}/></div>
+                <header><h1>Book</h1>{this.props.user && <h3>{this.props.user.username}</h3>}  </header>
+                <div className="hero"><ImageCrsl/></div>
+                <nav>
+                    <ul>
+                        <Link to="/blog"><li>Blog</li></Link>
+                        <Link to="/contact"><li>Contact Info</li></Link>
+                        <Link to="/about"><li>About Me</li></Link>
+                    </ul>
+                </nav> 
                 <div className="text-cont-outer">
                     <div className="text-content">
                         <h2>"oh how I wish this world was already aflame"</h2> 
@@ -33,13 +61,14 @@ class Home extends Component {
                         Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, 
                         dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, 
                         pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. </p>
+                        
                     </div>
                 </div>
                     <div className="socialmedia"></div>
                     <div className="galleryLink">
-                        <div className="pod"></div>
-                        <div className="pod"></div>
-                        <div className="pod"></div>
+                       <Link to='/blog'> <div className="pod">click</div></Link>
+                        <div className="pod">Subscribe</div>
+                        <div className="pod">Gallery</div>
                     </div>
                      </div>
                 <footer></footer>
@@ -48,4 +77,14 @@ class Home extends Component {
     }
 }
 
-export default Home; 
+const mapdispatchToProps = {
+    log_in: log_in
+}
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, mapdispatchToProps)(Home);

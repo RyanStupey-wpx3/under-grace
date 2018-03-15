@@ -5,13 +5,16 @@ import './nav.css';
 export default class Nav extends Component {
     render() {
         return (
-            <div>
-                 <ul>
-                        <Link to="/blog"><li>Blog</li></Link>
-                        <Link to="/contact"><li>Contact Info</li></Link>
-                        <Link to="/about"><li>About Me</li></Link>
+            <header className="navParent">
+                <h1>Under Fire</h1>
+                 <ul className="navUl">
+                        <Link to="/home"><li className="lin">HOME</li></Link>
+                        <Link to="/blog"><li className="lin">BLOG</li></Link>
+                        <Link to="/contact"><li className="lin">CONTACT ME</li></Link>
+                        <Link to="/about"><li className="lin">ABOUT ME</li></Link>
+                        <Link to="/"><li className="lin">Logout</li></Link>
                  </ul>
-            </div>
+            </header>
         );
     }
 }

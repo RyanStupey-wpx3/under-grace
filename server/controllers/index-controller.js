@@ -29,10 +29,9 @@ module.exports = {
     
         update:(req, res, next) => {
             const dbInstance = req.app.get('db');
-            const {params, query} = req;
-    
-            dbInstance.update_products([params.id, query.desc])
-            .then(() => res.status(200).send())
+            const {post_id, post_user, post_date, title, main_content} = req.body;
+            dbInstance.update_post([post_user, post_date, title, main_content, post_id])
+            .then((prods) => res.status(200).send(prods))
             .catch(() => res.status(500).send());
         },
         delete_post:(req, res, next) => {
@@ -41,8 +40,8 @@ module.exports = {
             
     
             dbInstance.delete_post([params.id])
-            .then(() => res.status(200).send() )
-            .catch(() => res.status(200).send() );
+            .then((blogs) => res.status(200).send(blogs) )
+            .catch((err) => res.status(500).send(err) );
         },
         get_test: (req, res, next) => {
             const dbInstsance = req.app.get('db');

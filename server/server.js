@@ -7,6 +7,7 @@ const ctrl = require('./controllers/index-controller.js')
 const authCtrl = require('./controllers/authController.js')
 const userCtrl = require('./controllers/userctrlr.js')
 const cloudin = require('cloudinary')
+const nodeMailer = require('nodemailer')
 require('dotenv').config();
 const app = express();
 
@@ -43,6 +44,36 @@ app.get('/api/user-data',userCtrl.getUser)
 
 app.post('/api/logout', userCtrl.destroyUser)
 
+app.post('/api/send-email', function (req, res) {
+    console.log('hit!')
+    let transporter = nodeMailer.createTransport({
+        service: 'gmail',
+        secure: false,
+        port: 3535,
+        auth: {
+            user: 'ryan.stupey@gmail.com',
+            pass: 'Anthony127'
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+
+    let mailOptions = {
+        from: 'ryan.stupey@gmail.com', // sender address
+        to: req.body.to, // list of receivers
+        subject: req.body.subject, // Subject line
+        html: `<h2>from:${req.body.name}</h2><br/><b>${req.body.message}</b>` // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+        });
+    });
+
 
 // app.post(url, ctrl.create)
 // app.get(`${url}/bins`, ctrl.getBins)
@@ -53,7 +84,7 @@ app.post(`${url}/posts`, ctrl.createPosts)
 // app.get(url, ctrl.read)
 // ctrl.read defined in controller
 
-// app.put(`${url}/:id`, ctrl.update)
+app.patch(`/api/posts/:id`, ctrl.update)
 
 app.delete(`${url}/post/:id`, ctrl.delete_post)
 

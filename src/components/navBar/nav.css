@@ -1,0 +1,35 @@
+.navParent{
+    
+    width: 100%;
+    background-color: black;
+}
+
+.navParent h1 {
+
+}
+
+.navUl {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    justify-content: space-around;
+    /* align-items: flex-end; */
+    list-style: none;
+    /* border: 5px solid blue; */
+    /* padding: 0.75rem; */
+    background-color: black;
+   
+    
+}
+
+div ul .lin {
+    /*  */
+    border-radius: 15px;
+    border: 1px solid grey;
+    padding: 6px;
+    position: relative;
+    /* top: 1rem; */
+    text-decoration: none;
+    font-family: 'News Cycle', sans-serif;
+    color: white;
+}

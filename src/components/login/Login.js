@@ -9,8 +9,8 @@ class Login extends Component {
             <div>
                 <div className="outer-container">
 
-                    <h1>Under Fire</h1>
-                    <a href={Link}>Login</a>
+                    <h1>All About that Fire!!</h1>
+                   <div className="link"> <a href={Link}>Login</a> </div>
                 </div>
             </div>
         );

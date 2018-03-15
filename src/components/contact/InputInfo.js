@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './inputInfo.css'
 
 class InputInfo extends Component {
     constructor(props){
@@ -12,6 +13,7 @@ class InputInfo extends Component {
             message: '',
         }
         this.getState = this.getState.bind(this)
+        this.sendContactInfo = this.sendContactInfo.bind(this)
     }
 
     getState(prop, val){
@@ -23,15 +25,16 @@ class InputInfo extends Component {
     }
 
     sendContactInfo(){
+        console.log('hit function')
         const {name, subject, email, message} = this.state
-        axios.post('/api/contact', {name, subject, email, message})
+        axios.post('/api/send-email', {to: email, subject: subject, message: message, name: name})
         .then((resp) => {
-            this.setState({
-                name: null,
-                subject: null,
-                email: null,
-                messsage: null,
-            })
+            // this.setState({
+            //     name: null,
+            //     subject: null,
+            //     email: null,
+            //     messsage: null,
+            // })
 
         })
     }
@@ -42,25 +45,18 @@ class InputInfo extends Component {
         return (
            <div className="body">
                 <div className="central">
-                <header></header>
-                <div className="hero"></div>
-                <div className="text-content"></div>
                 <div>
-                    <h3>rendering input on home page for testing</h3>
-                    <form>
-                        <input type="text" onChange={(e) => this.getState('name', e.target.value)} placeholder="name"/>
-                        <input type="text" onChange={(e) => this.getState('email', e.target.value)} placeholder="email"/>
-                        <input type="text" onChange={(e) => this.getState('subject', e.target.value)} placeholder="subject"/>
-                        <input type="text" onChange={(e) => this.getState('message', e.target.value)} placeholder="message"/>
-                        <input type="submit"/>
+                    <form className="contactForm" onSubmit={this.sendContactInfo}>
+                        <input className="inputField" type="text" onChange={(e) => this.getState('name', e.target.value)} name="name" placeholder="name"/>
+                        <input className="inputField" type="email" onChange={(e) => this.getState('email', e.target.value)} name="to" placeholder="email"/>
+                        <input className="inputField" type="text" onChange={(e) => this.getState('subject', e.target.value)} name="subject" placeholder="subject"/>
+                        <textarea className=" inputField messageBox" onChange={(e) => this.getState('message', e.target.value)} name="message" placeholder="message"/>
+                        <input className="sendButton" type="submit" value="send"/>
                     </form>
-                    <h4>name: {name}</h4>
-                    <h4>email: {email}</h4>
-                    <h4>subject: {subject}</h4>
+                    
                     
                 </div>
                 </div>
-                <footer></footer>
            </div>
         );
     }

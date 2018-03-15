@@ -6,7 +6,9 @@ import {log_in} from '../../redux/reducer'
 import axios from 'axios'
 import NewBlog from './NewBlog'
 import Delete_button from './Delete_post'
-import Edit_button from './Edit_button'
+import Edit_button from './Edit_button';
+import Nav from '../navBar/Nav';
+import EditBlog from '../editBlog/EditBlog'
 
 
 class Blog extends Component {
@@ -17,8 +19,10 @@ class Blog extends Component {
             blogs: [],
             newBlogStatus: false,
             message: null,
+            editStatus: false,
         }
         this.delete_post = this.delete_post.bind(this)
+        this.edit_post = this.edit_post.bind(this)
     }
     componentDidMount(){
         axios.get('/api/posts')
@@ -35,12 +39,14 @@ class Blog extends Component {
 
 
     delete_post(id){
+        console.log('id', id)
         axios.delete(`/api/post/${id}`)
         .then(() => {
             axios.get('/api/posts')
             .then((resp) => {
                     const blogs = resp.data
                     this.setState({blogs: blogs})
+                    
                 })
             .catch((err) => {
                  console.log('err', err)})
@@ -53,25 +59,36 @@ class Blog extends Component {
         if (this.props.user.user_status === 'admin'){
             this.setState({newBlogStatus: true})
          } else {
-                 this.setState({message: 'sorry, please sign in'})
+                 this.setState({
+                     message: 'sorry, please sign in',
+                     newBlogStatus: false,
+                    })
                 }
     }
 
-    edit_post(id){
-        axios.patch('/api/posts', )
+    edit_post(i){
+        axios.patch(`/api/posts/${this.state.blogs[i].post_id}`, {post_user: this.state.blogs[i].post_user, post_date: this.state.blogs[i].post_date, title: this.state.blogs[i].title, main_content: this.state.blogs[i].main_content})
+        .then((resp) => {
+            this.setState({
+               editStatus: true,
+            })
+        }).catch((err) => {
+            console.log('err', err)
+        })
     }
         
     render() {
-        console.log('blogs', this.state.blogs)
+        console.log('blogs.post_user', this.state.blogs.post_user)
         const displayBlogs = this.state.blogs.map((elem, i) => {
-           return(  <div>
+           return(  <div key={elem.post_id}>
                         <div>{elem.post_date}</div>
                         <div>{elem.post_user}</div>
-                        <div className="blogImageDiv"><img src={'https://' + elem.graphic}/></div>
+                        {/* <div className="blogImageDiv"><img src={<Image publicId={`https://${elem.graphic}`} type="fetch"></Image>}/></div> */}
                         <div>{elem.title}</div>
                         <div>{elem.main_content}</div>
-                        <Delete_button delete_post={this.delete_post} index={i}/>
-                        <Edit_button edit_post={this.edit_post} index={i}/>
+                        <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
+                        <Edit_button edit_post={() => this.edit_post(i)} index={elem.post_id}/>
+                        {this.state.editStatus &&  <EditBlog blogs={this.state.blogs}/>}
                     </div>)
 
         })
@@ -79,24 +96,22 @@ class Blog extends Component {
             
             <div className="body">
                 <div className="central">
-                <header><h1>Under Fire</h1></header>
-                <div className="hero"><img src={require('../../images/liveBurn.jpg')}/></div>
-                <nav>
-                    <ul>
-                        <Link to="/blog"><li>Blog</li></Link>
-                        <Link to="/contact"><li>Contact Info</li></Link>
-                        <Link to="/about"><li>About Me</li></Link>
-                        <Link to="/"><li>logout</li></Link>
-                    </ul>
-                </nav> 
+                {/* <header><h1>Under Fire</h1>
+                    
+                </header> */}
+                <Nav/>
+                {/* <div className="hero"><img src={require('../../images/liveBurn.jpg')}/></div> */}
+                
                 <button onClick={() => this.showTools()}>show admin tools</button>
                 {this.props.user && <h3>{this.props.user.username}</h3>}
                 {this.state.newBlogStatus && <NewBlog/>}
                 
                 {this.state.message && <div>{this.state.message}</div>}
                 <div className="text-cont-outer">
+
                     <div className="text-content">
-                        <h2>"oh how I wish this world was already aflame"</h2>
+                    
+                        <h2></h2>
                         <div>{displayBlogs}</div>
                     </div>
                 </div>

@@ -6,7 +6,8 @@ import InputInfo from '../contact/InputInfo'
 import {Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {log_in} from '../../redux/reducer';
-import ImageCrsl from '../Carousel';
+import ImageCrsl from '../carousel/Carousel';
+import Nav from '../navBar/Nav';
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -27,15 +28,9 @@ class Home extends Component {
             
            <div className="body">
                 <div className="central">
-                <header><h1>Book</h1>{this.props.user && <h3>{this.props.user.username}</h3>}  </header>
+                <Nav/>
                 <div className="hero"><ImageCrsl/></div>
-                <nav>
-                    <ul>
-                        <Link to="/blog"><li>Blog</li></Link>
-                        <Link to="/contact"><li>Contact Info</li></Link>
-                        <Link to="/about"><li>About Me</li></Link>
-                    </ul>
-                </nav> 
+               
                 <div className="text-cont-outer">
                     <div className="text-content">
                         <h2>"oh how I wish this world was already aflame"</h2> 

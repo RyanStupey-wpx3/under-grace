@@ -1,0 +1,25 @@
+.central {
+    
+}
+
+.contactForm{
+    margin-top: 3rem;
+}
+
+.inputField {
+    margin: 0.3rem auto;
+    display: block;
+    width: 60%;
+    /* margin: 0.5rem; */
+    background-color: #EDEDED;
+}
+.messageBox{
+    width: 59.7%;
+    height: 4rem;
+}
+.sendButton {
+    float: right;
+    margin-right: 10.4rem;
+    width: 6rem;
+    font-size: 18px;
+}

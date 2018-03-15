@@ -40,10 +40,16 @@ class NewBlog extends Component {
 
     postToDatabase(){
         console.log(this.state)
-        axios.post('/api/posts', {post_user: this.props.user.username, post_date: this.state.date, title: this.state.title, main_content: this.state.mainContent, graphic: this.state.imageFile})
+        axios.post('/api/posts', {post_user: this.props.user.username, post_date: this.state.date, title: this.state.title, main_content: this.state.mainContent, graphic: this.state.uploadedFileCloudinaryUrl})
         .then((resp) => {
             console.log('resp.data', resp.data)
             console.log('confirmed to db')
+            this.setState({
+                name:'',
+                date:'',
+                title:'',
+                mainContent:'',
+            })
         })
         .catch((err) => {console.log('err', err)})
     }
@@ -61,7 +67,7 @@ class NewBlog extends Component {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
                             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                             .field('file', file);
-    
+        console.log('upload', upload)
         upload.end((err, response) => {
           if (err) {
             console.error(err);

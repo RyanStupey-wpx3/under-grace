@@ -33,3 +33,14 @@ div ul .lin {
     font-family: 'News Cycle', sans-serif;
     color: white;
 }
+
+@media (max-width: 600px) {
+    .navUl  {
+        /* width: 100%; */
+        /* margin: 2rem; */
+        position: relative;
+        right: 1rem;
+        top: -1.5rem;
+    }
+
+}

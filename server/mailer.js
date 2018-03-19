@@ -13,6 +13,7 @@ transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
         return console.log(error);
     }
+    alert('your message has been sent!')
     console.log('Message sent: %s', info.messageId);
     // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));

@@ -10,8 +10,8 @@ export default class Nav extends Component {
                  <ul className="navUl">
                         <Link to="/home"><li className="lin">HOME</li></Link>
                         <Link to="/blog"><li className="lin">BLOG</li></Link>
-                        <Link to="/contact"><li className="lin">CONTACT ME</li></Link>
-                        <Link to="/about"><li className="lin">ABOUT ME</li></Link>
+                        <Link to="/contact"><li className="lin">CONTACT</li></Link>
+                        <Link to="/about"><li className="lin">ABOUT</li></Link>
                         <Link to="/"><li className="lin">LOGOUT</li></Link>
                  </ul>
             </header>

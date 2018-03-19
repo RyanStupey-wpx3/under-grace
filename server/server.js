@@ -84,7 +84,7 @@ app.post(`${url}/posts`, ctrl.createPosts)
 // app.get(url, ctrl.read)
 // ctrl.read defined in controller
 
-app.patch(`/api/posts/:id`, ctrl.update)
+app.put(`/api/posts/:id`, ctrl.update)
 
 app.delete(`${url}/post/:id`, ctrl.delete_post)
 

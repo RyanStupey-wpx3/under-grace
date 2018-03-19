@@ -2,3 +2,16 @@
     height: 33rem;
     width: 70%;
 }
+
+@media (max-width: 600px) {
+
+    .carouselDiv {
+        width: 100%;
+    }
+
+    .carouselDiv img {
+        height: 15rem;
+        width: 100%;
+    }
+    
+}

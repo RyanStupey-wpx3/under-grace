@@ -30,6 +30,10 @@
     
 }
 
+.couragePic {
+    
+}
+
 .pod img {
     border: 1px solid #ff8000;
     border-radius: 50%;
@@ -58,4 +62,14 @@ footer {
     height: 7rem;
     background: black;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+    .i-1{
+        display: none;
+    }
+
+    .i-3 {
+        display: none;
+    }
 }

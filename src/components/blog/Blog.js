@@ -22,9 +22,11 @@ class Blog extends Component {
             newBlogStatus: false,
             message: null,
             editStatus: false,
+            newId: ''
         }
         this.delete_post = this.delete_post.bind(this)
-        this.edit_post = this.edit_post.bind(this)
+        // this.edit_post = this.edit_post.bind(this)
+        // this.toggleState. this.toggleState.bind(this)
     }
     componentDidMount(){
         axios.get('/api/posts')
@@ -64,40 +66,50 @@ class Blog extends Component {
                  this.setState({
                      message: 'sorry, please sign in',
                      newBlogStatus: false,
+                     
                     })
                 }
     }
 
-    edit_post(i){
-        this.setState({
-            
-        })
-        axios.patch(`/api/posts/${this.state.blogs[i].post_id}`, {post_user: this.state.blogs[i].post_user, post_date: this.state.blogs[i].post_date, title: this.state.blogs[i].title, main_content: this.state.blogs[i].main_content})
-        .then((resp) => {
+    toggleState(i){
+        if(this.state.editStatus){
             this.setState({
-               editStatus: true,
+                editStatus: false,
+                newId: ""
             })
+        } else {
+            this.setState({
+                editStatus: true,
+                newId: i
+            })
+        }
+    }
+
+    submit_post(i, body){
+        console.log('i & body', i, HTMLBodyElement)
+        axios.put(`/api/posts/${i}`, {...body, post_id: i})
+        .then(() => {
+            console.log('hit put')
         }).catch((err) => {
             console.log('err', err)
         })
     }
+    
         
     render() {
-        console.log('blogs.graphic', this.state.blogs.post_user)
+        console.log('blogs.graphic', this.state.blogs)
         const displayBlogs = this.state.blogs.map((elem, i) => {
            return(  <div key={elem.post_id} className="mainBlogContent">
-                        {/* <div>{elem.post_date}</div> */}
-                        {/* <div>{elem.post_user}</div> */}
-                        
-                       
+  
                         <div className="mainContent">
                             
                             <h2 className="title">{elem.title}</h2>
-                                <p> <div className="blogImageDiv"><img className="" src={elem.graphic} /></div>{elem.main_content}</p>
+                            <img className="" src={elem.graphic} />
+                                <p> <div className="blogImageDiv"></div>{elem.main_content}</p>
                         </div>
                         <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
-                        <Edit_button edit_post={() => this.edit_post(i)} index={elem.post_id}/>
-                        {this.state.editStatus &&  <EditBlog blogs={this.state.blogs}/>}
+                        <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>
+                        {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>}
                     </div>)
 
         })

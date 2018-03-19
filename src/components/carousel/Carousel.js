@@ -11,6 +11,7 @@ export default class ImageCrsl extends Component {
             <img src={require('../../images/ihaventforgot/my_aunt_sodie.JPG')}/>
             <img src={require('../../images/ihaventforgot/sky1.JPG')}/>
             <img src={require('../../images/ihaventforgot/sky2.JPG')}/>
+            <img src={require('../../images/courage.jpg')}/>
           </Carousel>
         );
     }

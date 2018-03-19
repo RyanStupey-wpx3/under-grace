@@ -29,14 +29,14 @@ module.exports = {
     
         update:(req, res, next) => {
             const dbInstance = req.app.get('db');
-            const {post_id, post_user, post_date, title, main_content} = req.body;
+            const {post_id, post_user, date, title, mainContent} = req.body;
             console.log('req.body', req.body)
-            dbInstance.update_post([post_user, post_date, title, main_content, post_id])
+            dbInstance.update_post([post_user, date, title, mainContent, post_id])
             .then((prods) =>  {
                 console.log('prods', prods)
                 res.status(200).send(prods)
         })
-            .catch(() => res.status(500).send());
+            .catch((err) => res.status(500).send(err));
         },
         delete_post:(req, res, next) => {
             const dbInstance = req.app.get('db')

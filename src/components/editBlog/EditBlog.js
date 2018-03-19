@@ -3,28 +3,27 @@ import React, { Component } from 'react';
 export default class EditBlog extends Component {
     constructor(props){
         super(props)
-
+console.log(props)
         this.state = {
             post_user: this.props.blogs.post_user,
-            date: this.props.blogs.date,
+            date: this.props.blogs.post_date,
             title: this.props.blogs.title,
-            mainContent: this.props.blogs.mainContent,
+            mainContent: this.props.blogs.main_content,
         }
     }
-    handleChange(event) {
-        // console.log(event.target)
-        this.setState({ [event.target.name]: event.target.value });
-      }
+   
+
 
     render() {
+        console.log(this.state)
         return (
             <div className="EditBlogParent">
                 <form onSubmit={this.handleSubmit} className="postForm">
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="name" value={this.state.post_user}  className="usernameInput" placeholder="username: bring in through redux"/>
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="date" value={this.state.date} className="dateInput" placeholder="date of: "/>
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="title" value={this.state.title} className="titleInput" placeholder="title"/>
-                    <textarea onChange={(e) => this.handleChange(e)}  name="mainContent" value={this.state.mainContent} className="blogContent" placeholder="blog message" />
-                    <input className="submitButton" type="submit" onClick={() => this.postToDatabase()} value="submit"/>
+                    <input type="text"onChange={(e) => this.setState({post_user: e.target.value})} value={this.state.post_user}  name="name"  className="usernameInput" placeholder="username: bring in through redux"/>
+                    <input type="text"onChange={(e) => this.setState({date: e.target.value})} value={this.state.date}  name="date" className="dateInput" placeholder="date of: "/>
+                    <input type="text"onChange={(e) => this.setState({title: e.target.value})} value={this.state.title}  name="title" className="titleInput" placeholder="title"/>
+                    <textarea onChange={(e) => this.setState({mainContent: e.target.value})} value={this.state.mainContent}  name="mainContent" className="blogContent" placeholder="blog message" />
+                    <input className="submitButton" type="submit" onClick={() => this.props.submit_post( this.props.blogs.post_id, this.state )} value="submit"/>
                 </form>
                 
             </div>

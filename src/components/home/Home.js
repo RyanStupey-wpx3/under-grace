@@ -44,21 +44,21 @@ class Home extends Component {
     render() {
         console.log('this.state.weatherApiCall', this.state.weatherApiCall)
 
-        const displayWeather = this.state.weatherApiCall.map((elem) => {
-            return (<div>
-                <div>Temp:{elem.main.temp}</div>
-                <div>Humidity:{elem.main.humidity}</div>
-                <div>Forecast:{elem.weather[0].main}</div>
-                <div>Descriptio{elem.weather[0].description}</div>
-            </div>)
-        })
+        // const displayWeather = this.state.weatherApiCall.map((elem) => {
+        //     return (<div>
+        //         <div>Temp:{elem.main.temp}</div>
+        //         <div>Humidity:{elem.main.humidity}</div>
+        //         <div>Forecast:{elem.weather[0].main}</div>
+        //         <div>Descriptio{elem.weather[0].description}</div>
+        //     </div>)
+        // })
         return (
             
            <div className="body">
                 <div className="central">
                 <Nav/>
                 <div className="hero"><ImageCrsl/></div>
-               
+               <div></div>
                 <div className="text-cont-outer">
                     <div className="text-content">
                         <h2>"oh how I wish this world was already aflame"</h2> 
@@ -88,12 +88,13 @@ class Home extends Component {
                     </div>
                 </div>
                     <div className="socialmedia">
-                        <div>{displayWeather}</div>
+                        {/* <div>{displayWeather}</div> */}
+                        
                     </div>
                     <div className="galleryLink">
-                       <Link to='/blog'> <div className="pod"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
-                        <div className="pod"><img src={require('../../images/person.jpg')}/></div>
-                        <div className="pod"><img src={require('../../images/liveBurn.jpg')}/></div>
+                       <Link to='/blog'> <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
+                        <div className="pod i-2"><img src={require('../../images/person.jpg')}/></div>
+                        <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/></div>
                     </div>
                      </div>
                 <footer>

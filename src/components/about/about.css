@@ -1,0 +1,13 @@
+.body{
+    /* text-align: center; */
+    /* height: 400vh; */
+}
+.contentBody{
+    border: 2px solid white;
+    width: 70%;
+    
+    /* position: sticky; */
+    display: block;
+    margin: 0 auto;
+    top: 22rem;
+}

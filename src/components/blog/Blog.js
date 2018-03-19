@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../main.css'
+import './blog.css'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {log_in} from '../../redux/reducer'
@@ -9,6 +10,7 @@ import Delete_button from './Delete_post'
 import Edit_button from './Edit_button';
 import Nav from '../navBar/Nav';
 import EditBlog from '../editBlog/EditBlog'
+import ImageCrsl from '../carousel/Carousel'
 
 
 class Blog extends Component {
@@ -67,6 +69,9 @@ class Blog extends Component {
     }
 
     edit_post(i){
+        this.setState({
+            
+        })
         axios.patch(`/api/posts/${this.state.blogs[i].post_id}`, {post_user: this.state.blogs[i].post_user, post_date: this.state.blogs[i].post_date, title: this.state.blogs[i].title, main_content: this.state.blogs[i].main_content})
         .then((resp) => {
             this.setState({
@@ -78,14 +83,18 @@ class Blog extends Component {
     }
         
     render() {
-        console.log('blogs.post_user', this.state.blogs.post_user)
+        console.log('blogs.graphic', this.state.blogs.post_user)
         const displayBlogs = this.state.blogs.map((elem, i) => {
-           return(  <div key={elem.post_id}>
-                        <div>{elem.post_date}</div>
-                        <div>{elem.post_user}</div>
-                        {/* <div className="blogImageDiv"><img src={<Image publicId={`https://${elem.graphic}`} type="fetch"></Image>}/></div> */}
-                        <div>{elem.title}</div>
-                        <div>{elem.main_content}</div>
+           return(  <div key={elem.post_id} className="mainBlogContent">
+                        {/* <div>{elem.post_date}</div> */}
+                        {/* <div>{elem.post_user}</div> */}
+                        
+                       
+                        <div className="mainContent">
+                            
+                            <h2 className="title">{elem.title}</h2>
+                                <p> <div className="blogImageDiv"><img className="" src={elem.graphic} /></div>{elem.main_content}</p>
+                        </div>
                         <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
                         <Edit_button edit_post={() => this.edit_post(i)} index={elem.post_id}/>
                         {this.state.editStatus &&  <EditBlog blogs={this.state.blogs}/>}
@@ -101,7 +110,7 @@ class Blog extends Component {
                 </header> */}
                 <Nav/>
                 {/* <div className="hero"><img src={require('../../images/liveBurn.jpg')}/></div> */}
-                
+                <div className="hero"><ImageCrsl/></div>
                 <button onClick={() => this.showTools()}>show admin tools</button>
                 {this.props.user && <h3>{this.props.user.username}</h3>}
                 {this.state.newBlogStatus && <NewBlog/>}
@@ -112,7 +121,7 @@ class Blog extends Component {
                     <div className="text-content">
                     
                         <h2></h2>
-                        <div>{displayBlogs}</div>
+                        <div className="displayBlogsParent">{displayBlogs}</div>
                     </div>
                 </div>
                     

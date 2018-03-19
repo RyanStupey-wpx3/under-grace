@@ -12,7 +12,25 @@ class Home extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            weatherApiCall: null,
+            apikey:'053500b0444e5159d69ef33fa1ed972a',
+        }
+
     }
+    componentWillMount(){
+        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=053500b0444e5159d69ef33fa1ed972a`)
+        .then((resp) => {
+            this.setState({
+                weatherApiCall: resp.data,
+            })
+        }).catch((err) =>{
+            console.log('err', err)
+        })
+
+    }
+
+
     componentDidMount(){
         axios.get('/api/user-data')
         .then((resp) => {
@@ -21,9 +39,19 @@ class Home extends Component {
         })
         
     }
+   
 
     render() {
-        console.log('this.props.user', this.props.user)
+        console.log('this.state.weatherApiCall', this.state.weatherApiCall)
+
+        const displayWeather = this.state.weatherApiCall.map((elem) => {
+            return (<div>
+                <div>Temp:{elem.main.temp}</div>
+                <div>Humidity:{elem.main.humidity}</div>
+                <div>Forecast:{elem.weather[0].main}</div>
+                <div>Descriptio{elem.weather[0].description}</div>
+            </div>)
+        })
         return (
             
            <div className="body">
@@ -59,14 +87,18 @@ class Home extends Component {
                         
                     </div>
                 </div>
-                    <div className="socialmedia"></div>
+                    <div className="socialmedia">
+                        <div>{displayWeather}</div>
+                    </div>
                     <div className="galleryLink">
-                       <Link to='/blog'> <div className="pod">click</div></Link>
-                        <div className="pod">Subscribe</div>
-                        <div className="pod">Gallery</div>
+                       <Link to='/blog'> <div className="pod"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
+                        <div className="pod"><img src={require('../../images/person.jpg')}/></div>
+                        <div className="pod"><img src={require('../../images/liveBurn.jpg')}/></div>
                     </div>
                      </div>
-                <footer></footer>
+                <footer>
+                    
+                </footer>
            </div>
         );
     }

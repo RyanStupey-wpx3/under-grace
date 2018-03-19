@@ -85,7 +85,7 @@ class NewBlog extends Component {
     
 
     render() {
-        // console.log('state', this.state)
+        console.log('cloudinaryurl', this.state.uploadedFileCloudinaryUrl)
         const {name, date, title, mainContent} = this.state
         // const displayImage = this.state.imageUrl.map((elem) => {
         //     <div>

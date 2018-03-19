@@ -1,0 +1,10 @@
+.hardcodedContactInfo {
+    border: 2px solid red;
+    width: 70%;
+    margin: 0 auto;
+    /* padding-bottom: 3rem; */
+    position: relative;
+    top: 1rem;
+    text-align: left;
+
+}

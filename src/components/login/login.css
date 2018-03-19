@@ -21,6 +21,7 @@
     text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 0px 20px, red 0 0px 20px;
 }
 .outer-container .link{
+    border: 2px solid red;
     position: relative;
     top: 35%;
     width: 5rem;
@@ -29,6 +30,10 @@
     margin: 0 auto;
     background-color: black;
     border-radius: 8px;
+}
+
+.outer-container .link:active{
+    background-color: darkgray;
 }
 
 .outer-container .link a {

@@ -4,6 +4,7 @@
   "private": true,
   "main": "server/server.js",
   "dependencies": {
+    "animated": "^0.2.2",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "cloudinary": "^1.10.0",
@@ -24,6 +25,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "superagent": "^3.8.2"
   },

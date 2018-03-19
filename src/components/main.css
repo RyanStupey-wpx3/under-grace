@@ -20,9 +20,9 @@ header h1 {
 .hero {
     border: 1px solid #ff8000;
     width: 70%;
-    height: 30rem;
+    height: 33rem;
     text-align: center;
-    margin: 0 auto;
+    margin: 3rem auto;
     position: relative;
     top: 2rem;
 }
@@ -32,14 +32,3 @@ img {
     margin: 0 auto;
 }
 
-.text-cont-outer{
-    width: 100%;
-    /* border: 2px solid yellow; */
-}
-.text-content {
-    border: 1px solid #ff8000;
-    border-radius: 20px;
-    width: 70%;
-    margin: 0 auto;
-    
-}

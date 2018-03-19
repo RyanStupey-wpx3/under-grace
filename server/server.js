@@ -16,7 +16,7 @@ app.use(cors()); //<-- check postman to see if you need cors
 
 app.use(bodyParser.json());
 
-
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(session({
     secret: process.env.SESSION_SECRET,

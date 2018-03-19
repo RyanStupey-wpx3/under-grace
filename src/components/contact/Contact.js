@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import InputInfo from './InputInfo';
 import Nav from '../navBar/Nav';
-import Carousel from '../carousel/Carousel'
+import '../main.css'
+import './contact.css'
+import ImageCrsl from '../carousel/Carousel'
 
 class Home extends Component {
     render() {
         return (
            <div className="body">
-                <header><Nav/></header>
+                <Nav/>
                 <div className="central">
-                <div><Carousel/></div>
-                <div>
+                <div className="hero"><ImageCrsl/></div>
+                <div className="hardcodedContactInfo">
                     <h4>name: Kathi Lang </h4>
                     <h4>email: kathilang58@gmail.com</h4>
                 </div>

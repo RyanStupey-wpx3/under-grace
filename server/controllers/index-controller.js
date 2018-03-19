@@ -30,8 +30,12 @@ module.exports = {
         update:(req, res, next) => {
             const dbInstance = req.app.get('db');
             const {post_id, post_user, post_date, title, main_content} = req.body;
+            console.log('req.body', req.body)
             dbInstance.update_post([post_user, post_date, title, main_content, post_id])
-            .then((prods) => res.status(200).send(prods))
+            .then((prods) =>  {
+                console.log('prods', prods)
+                res.status(200).send(prods)
+        })
             .catch(() => res.status(500).send());
         },
         delete_post:(req, res, next) => {

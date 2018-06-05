@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-boilerplate",
+  "name": "under-grace",
   "version": "0.1.0",
   "private": true,
   "main": "server/server.js",
@@ -16,15 +16,15 @@
     "images-upload-middleware": "^1.1.1",
     "massive": "^4.6.4",
     "nodemailer": "^4.6.0",
-    "now": "^10.1.5",
+    "now": "^11.1.7",
     "nuka-carousel": "^3.1.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-dropzone": "^4.2.9",
     "react-images-upload": "^1.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
+    "react-scripts": "1.1.4",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "superagent": "^3.8.2"
@@ -33,7 +33,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "now-start": "node server/server.js",
+    "deploy": "now --public --dotenv=.env.prod -d"
+  },
+  "now": {
+    "alias": "grace-after-fire"
   },
   "proxy": {
     "/auth/callback": {

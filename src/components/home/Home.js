@@ -13,22 +13,22 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            weatherApiCall: null,
+            // weatherApiCall: {},
             apikey:'053500b0444e5159d69ef33fa1ed972a',
         }
 
     }
-    componentWillMount(){
-        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=053500b0444e5159d69ef33fa1ed972a`)
-        .then((resp) => {
-            this.setState({
-                weatherApiCall: resp.data,
-            })
-        }).catch((err) =>{
-            console.log('err', err)
-        })
+    // componentWillMount(){
+    //     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=053500b0444e5159d69ef33fa1ed972a`)
+    //     .then((resp) => {
+    //         this.setState({
+    //             weatherApiCall: resp.data,
+    //         })
+    //     }).catch((err) =>{
+    //         console.log('err', err)
+    //     })
 
-    }
+    // }
 
 
     componentDidMount(){
@@ -42,16 +42,14 @@ class Home extends Component {
    
 
     render() {
-        console.log('this.state.weatherApiCall', this.state.weatherApiCall)
+        // console.log('this.state.weatherApiCall', this.state.weatherApiCall)
+        // const {weatherApiCall} = this.state;
 
-        // const displayWeather = this.state.weatherApiCall.map((elem) => {
-        //     return (<div>
-        //         <div>Temp:{elem.main.temp}</div>
-        //         <div>Humidity:{elem.main.humidity}</div>
-        //         <div>Forecast:{elem.weather[0].main}</div>
-        //         <div>Descriptio{elem.weather[0].description}</div>
-        //     </div>)
-        // })
+        // const displayWeather = this.state.weatherApiCall
+            
+                
+          
+      
         return (
             
            <div className="body">
@@ -88,12 +86,17 @@ class Home extends Component {
                     </div>
                 </div>
                     <div className="socialmedia">
-                        {/* <div>{displayWeather}</div> */}
+                        <div>
+                            {/* <div>Temp:{weatherApiCall.main.temp}</div>
+                            <div>Humidity:{weatherApiCall.main.humidity}</div>
+                            <div>Forecast:{weatherApiCall.weather[0].main}</div>
+                            <div>Descriptio{weatherApiCall.weather[0].description}</div> */}
+                        </div>
                         
                     </div>
                     <div className="galleryLink">
                        <Link to='/blog'> <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
-                        <div className="pod i-2"><img src={require('../../images/person.jpg')}/></div>
+                        <div className="pod i-2"></div>
                         <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/></div>
                     </div>
                      </div>

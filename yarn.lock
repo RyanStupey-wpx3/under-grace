@@ -4533,9 +4533,9 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
-now@^10.1.5:
-  version "10.1.5"
-  resolved "https://registry.yarnpkg.com/now/-/now-10.1.5.tgz#6d5ed80723aacf101103a200f56635cf870872fb"
+now@^11.1.7:
+  version "11.1.7"
+  resolved "https://registry.yarnpkg.com/now/-/now-11.1.7.tgz#161bbf0c6ed090fb5e66ec8b1650926e09a41896"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -5476,9 +5476,9 @@ react-dev-utils@^5.0.0:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+react-dom@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5603,9 +5603,9 @@ react-tween-state@^0.1.5:
     raf "^3.1.0"
     tween-functions "^1.0.1"
 
-react@^16.20.0, react@^16.4.0:
-  version "16.4.0-alpha.0911da3"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0-alpha.0911da3.tgz#5dbd38a7432b07853f5fd517a14ee614499f8093"
+react@^16.20.0, react@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

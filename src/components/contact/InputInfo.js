@@ -16,11 +16,11 @@ class InputInfo extends Component {
         this.sendContactInfo = this.sendContactInfo.bind(this)
     }
 
-    getState(prop, val){
+    getState(prop, val) {
         console.log('from getstate')
         this.setState({
-            [prop]: val, 
-            
+            [prop]: val,
+
         })
     }
 

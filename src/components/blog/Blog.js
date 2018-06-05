@@ -49,6 +49,7 @@ class Blog extends Component {
             axios.get('/api/posts')
             .then((resp) => {
                     const blogs = resp.data
+                    console.log('resp.data', resp.data)
                     this.setState({blogs: blogs})
                     
                 })
@@ -60,15 +61,21 @@ class Blog extends Component {
 
 
     showTools(){
-        if (this.props.user.user_status === 'admin'){
-            this.setState({newBlogStatus: true})
-         } else {
-                 this.setState({
-                     message: 'sorry, please sign in',
-                     newBlogStatus: false,
-                     
-                    })
-                }
+        if (this.props.user){
+            if (this.props.user.user_status === 'admin'){
+                this.setState({newBlogStatus: true})
+             } else {
+                     this.setState({
+                         message: 'sorry, please sign in',
+                         newBlogStatus: false,
+                         
+                        })
+                    }
+
+        } else {
+            alert('we are sorry, but you do not have proper permissions to view these tools')
+        }
+        
     }
 
     toggleState(i){
@@ -97,7 +104,6 @@ class Blog extends Component {
     
         
     render() {
-        console.log('blogs.graphic', this.state.blogs)
         const displayBlogs = this.state.blogs.map((elem, i) => {
            return(  <div key={elem.post_id} className="mainBlogContent">
   
@@ -113,6 +119,9 @@ class Blog extends Component {
                     </div>)
 
         })
+//have rendered admin blogs view, next import NewBlog into AdminBlog and setState to conditionally render 
+//then import header and app.css styles to conform to rest of app.  
+        
         return (
             
             <div className="body">
@@ -123,7 +132,8 @@ class Blog extends Component {
                 <Nav/>
                 {/* <div className="hero"><img src={require('../../images/liveBurn.jpg')}/></div> */}
                 <div className="hero"><ImageCrsl/></div>
-                <button onClick={() => this.showTools()}>show admin tools</button>
+                    <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>
+                {/* to make button Link to= AdminBlogPost */}
                 {this.props.user && <h3>{this.props.user.username}</h3>}
                 {this.state.newBlogStatus && <NewBlog/>}
                 

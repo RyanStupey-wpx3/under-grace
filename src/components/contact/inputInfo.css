@@ -4,6 +4,7 @@
 
 .contactForm{
     margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .inputField {
@@ -18,7 +19,8 @@
     height: 4rem;
 }
 .sendButton {
-    float: right;
+    position: relative;
+    left: 68rem;
     margin-right: 10.4rem;
     width: 6rem;
     font-size: 18px;

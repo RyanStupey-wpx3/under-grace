@@ -51,8 +51,8 @@ app.post('/api/send-email', function (req, res) {
         secure: false,
         port: 3535,
         auth: {
-            user: 'ryan.stupey@gmail.com',
-            pass: 'Anthony127'
+            user: process.env.USERNAME,
+            pass: process.env.PASSWORD
         },
         tls: {
             rejectUnauthorized: false,
@@ -87,6 +87,11 @@ app.post(`${url}/posts`, ctrl.createPosts)
 app.put(`/api/posts/:id`, ctrl.update)
 
 app.delete(`${url}/post/:id`, ctrl.delete_post)
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const port = 3535 
 

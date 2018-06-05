@@ -1,12 +1,17 @@
 .mainContent img {
-    height: 30rem;
+    height: 40rem;
+
 }
 
 .mainContent h2 {
     font-size: 42px;
 }
 
-@media (max-width: 600px) {
+.text-content {
+    font-family: 'Glegoo', serif;
+}
+
+@media (max-width: 1000px) {
     .text-content {
         /* border: 2px solid yellow; */
         width: 100%;
@@ -14,5 +19,6 @@
     .mainContent img {
         width: 100%;
         height: 20rem;
+
     }
 }

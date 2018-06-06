@@ -24,9 +24,7 @@ class Blog extends Component {
             editStatus: false,
             newId: ''
         }
-        this.delete_post = this.delete_post.bind(this)
-        // this.edit_post = this.edit_post.bind(this)
-        // this.toggleState. this.toggleState.bind(this)
+
     }
     componentDidMount(){
         axios.get('/api/posts')
@@ -40,44 +38,6 @@ class Blog extends Component {
                 // console.log('this.props.user', this.props.user)
             })
     }
-
-
-    delete_post(id){
-        console.log('id', id)
-        axios.delete(`/api/post/${id}`)
-        .then(() => {
-            axios.get('/api/posts')
-            .then((resp) => {
-                    const blogs = resp.data
-                    console.log('resp.data', resp.data)
-                    this.setState({blogs: blogs})
-                    
-                })
-            .catch((err) => {
-                 console.log('err', err)})
-        }).catch((err) => {console.log('err', err)})
-    }
-
-
-
-    showTools(){
-        if (this.props.user){
-            if (this.props.user.user_status === 'admin'){
-                this.setState({newBlogStatus: true})
-             } else {
-                     this.setState({
-                         message: 'sorry, please sign in',
-                         newBlogStatus: false,
-                         
-                        })
-                    }
-
-        } else {
-            alert('we are sorry, but you do not have proper permissions to view these tools')
-        }
-        
-    }
-
     toggleState(i){
         if(this.state.editStatus){
             this.setState({
@@ -106,48 +66,29 @@ class Blog extends Component {
     render() {
         const displayBlogs = this.state.blogs.map((elem, i) => {
            return(  <div key={elem.post_id} className="mainBlogContent">
-  
                         <div className="mainContent">
-                            
                             <h2 className="title">{elem.title}</h2>
                             <img className="" src={elem.graphic} />
-                                <p> <div className="blogImageDiv"></div>{elem.main_content}</p>
+                            <p> <div className="blogImageDiv"></div>{elem.main_content}</p>
                         </div>
-                        <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
-                        <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>
                         {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>}
                     </div>)
-
         })
-//have rendered admin blogs view, next import NewBlog into AdminBlog and setState to conditionally render 
-//then import header and app.css styles to conform to rest of app.  
-        
         return (
             
             <div className="body">
                 <div className="central">
-                {/* <header><h1>Under Fire</h1>
-                    
-                </header> */}
-                <Nav/>
-                {/* <div className="hero"><img src={require('../../images/liveBurn.jpg')}/></div> */}
-                <div className="hero"><ImageCrsl/></div>
-                    <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>
-                {/* to make button Link to= AdminBlogPost */}
-                {this.props.user && <h3>{this.props.user.username}</h3>}
-                {this.state.newBlogStatus && <NewBlog/>}
-                
-                {this.state.message && <div>{this.state.message}</div>}
-                <div className="text-cont-outer">
-
-                    <div className="text-content">
-                    
-                        <h2></h2>
-                        <div className="displayBlogsParent">{displayBlogs}</div>
+                    <Nav/>
+                    <div className="hero"><ImageCrsl/></div>
+                   {this.props.user.user_status && <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>}
+                    {this.props.user && <h3>{this.props.user.username}</h3>}
+                    {this.state.message && <div>{this.state.message}</div>}
+                    <div className="text-cont-outer">
+                        <div className="text-content">
+                            <div className="displayBlogsParent">{displayBlogs}</div>
+                         </div>
                     </div>
-                </div>
-                    
-                     </div>
+                 </div>
                 <footer></footer>
            </div>
         );

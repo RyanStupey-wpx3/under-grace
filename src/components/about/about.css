@@ -3,11 +3,36 @@
     /* height: 400vh; */
 }
 .contentBody{
-    border: 2px solid white;
+    /* border: 2px solid white; */
     width: 70%;
-    
+    font-size: 24px;
     /* position: sticky; */
     display: block;
     margin: 0 auto;
     top: 22rem;
+}
+
+.kathiPictureDiv{
+    /* border: 2px solid white; */
+    margin-top: 3rem;
+    width: 100%;
+}
+.kathiPicture {
+    display: block;
+    margin: 0 auto;
+    /* height: 24rem; */
+    width: 16rem;
+}
+.AboutTheAuthorH2 {
+    text-align: center;
+}
+.bibleVerseDiv {
+    margin: 1.5rem;
+    /* border: 2px solid red; */
+    width: 100%;
+}
+.bibleVerseTitle {
+    /* border: 2px solid black; */
+    width: 20rem;
+    margin: 0 auto;
 }

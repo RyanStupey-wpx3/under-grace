@@ -3,7 +3,7 @@ import InputInfo from './InputInfo';
 import Nav from '../navBar/Nav';
 import '../main.css'
 import './contact.css'
-import ImageCrsl from '../carousel/Carousel'
+// import ImageCrsl from '../carousel/Carousel'
 
 class Home extends Component {
     render() {
@@ -11,7 +11,7 @@ class Home extends Component {
            <div className="body">
                 <Nav/>
                 <div className="central">
-                <div className="hero"><ImageCrsl/></div>
+                <div className="hero"></div>
                 <div className="hardcodedContactInfo">
                     <h4>name: Kathi Lang </h4>
                     <h4>email: kathilang58@gmail.com</h4>

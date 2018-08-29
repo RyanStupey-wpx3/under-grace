@@ -1,0 +1,1 @@
+SELECT users.username, posts.post_date, posts.post_user FROM posts INNER JOIN users ON posts.post_user = users.username;

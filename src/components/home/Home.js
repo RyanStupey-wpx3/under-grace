@@ -55,33 +55,28 @@ class Home extends Component {
            <div className="body">
                 <div className="central">
                 <Nav/>
-                <div className="hero"><ImageCrsl/></div>
+                <div className="hero"></div>
                <div></div>
                 <div className="text-cont-outer">
                     <div className="text-content">
-                        <h2>"oh how I wish this world was already aflame"</h2> 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
-                        Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. 
-                        Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. 
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    
+                        <h1>Welcome!</h1>
+                        <p>Hello! Thank you for taking time to  look at my website – it's for women  seeking joy and strength in day to day life.  My life, like yours, 
+                        has been full of ups and downs.  I have at times, chosen not to follow God. Yet He still loved me, and saved me.  
+                        My blessings include a loving family, good friends, and a church home that fits.  I don’t have all the answers, but I’m willing to share my experiences,
+                         my mistakes, and my successes to let you know through Christ, we can all have grace - under fire and after fire. </p>
 
-                        <p>Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. 
-                        Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. 
-                        Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non,
-                        massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel,
-                         tincidunt sed, euismod in, nibh.</p>
+                         <hr/>
+                        
+                        <h2>A little about me</h2>
+                        <p>Most importantly, I believe in God the Father and I believe in Jesus Christ. I am also a wife, a mother, and a grandmother.  
+                            I had a 35 year career in law enforcement  where I've encountered people during the worst of circumstances: A school shooting with six teenagers shot, with five of them killed, 
+                            A mud slide destroying a community with 43 lives lost, An 18 month old little girl who drowned in the river, Children assaulted by their own parents, But through God's Grace I was able to witness incredible strength and faith in the people who became part of my life.</p>
 
-                        <p>Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                        per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, 
-                        a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus 
-                        consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. 
-                        Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
-                         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor.
-                          Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel,
-                           egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. 
-                        Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, 
-                        dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, 
-                        pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. </p>
+                            <h5>Please join me, share your story with me, let me know your thoughts.</h5>
+                         <hr/>
+                        <h2>Jeremiah 29:11</h2>
+                        <p>“For I know I have plans for you” declared the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.</p>
                         
                     </div>
                 </div>
@@ -96,7 +91,7 @@ class Home extends Component {
                     </div>
                     <div className="galleryLink">
                        <Link to='/blog'> <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
-                        <div className="pod i-2"></div>
+                        <div className="pod i-2"><img src={require('../../images/ihaventforgot/image10.png')}/> </div>
                         <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/></div>
                     </div>
                      </div>
@@ -105,6 +100,7 @@ class Home extends Component {
                 </footer>
            </div>
         );
+
     }
 }
 

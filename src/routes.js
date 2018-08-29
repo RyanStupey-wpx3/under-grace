@@ -11,8 +11,8 @@ import {Route, Switch} from 'react-router-dom';
 
 export default <Switch>
 
-        <Route exact path="/" component={Login}/>
-        <Route path="/home" component={Home}/>
+        {/* <Route exact path="/" component={Login}/> */}
+        <Route exact path="/" component={Home}/>
         <Route path="/contact" component={Contact}/>
         <Route path="/blog" component={Blog}/>
         <Route path="/adminblog/uhoiu34r78ys7dvh4kjth8y" component={AdminBlogPost}/>

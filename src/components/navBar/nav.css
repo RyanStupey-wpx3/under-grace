@@ -1,36 +1,82 @@
+@font-face {
+    font-family: KGBytheGraceofGodimport;
+    src: url('../../KGBytheGraceofGod.ttf');
+}
+
 .navParent{
     
     width: 100%;
-    background-color: black;
-    position: sticky;
+    /* background-color: #D7DBDD; */
+    /* background-color: #574E61; */
+    /* position: sticky; */
     top: 0rem;
     z-index: 1;
+    text-decoration: none;
+
 }
 
 header {
     text-align: center;
+    background: #8de9f2;
+background:-webkit-linear-gradient(bottom, #8de9f2, #ffffff);
+background: -moz-linear-gradient(bottom, #8de9f2, #ffffff);
+background: -ms-linear-gradient(bottom, #8de9f2, #ffffff);
+background: -o-linear-gradient(bottom, #8de9f2, #ffffff);
+background: linear-gradient(to top, #8de9f2, #ffffff);
+}
+header h1 {
+    padding-top: 1.5rem;
+    margin: 0;
+    /* color: #fff; */
+    color: #7A7A7A;
+    text-shadow:
+		-1px -1px 0 #fff,
+		1px -1px 0 #fff,
+		-1px 1px 0 #fff,
+		1px 1px 0 #fff;
+    /* color: #7A7A7A; */
+    font-family: KGBytheGraceofGodimport;
+    font-size: 102px;
+    /* font-family: 'Merienda', cursive; */
+    /* text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 0px 20px, red 0 0px 20px; */
+    
 }
 
-
+ul a {
+    text-decoration: none;
+}
 #navUl {
     display: flex;
     flex-direction: row;
     height: 3rem;
     justify-content: space-around;
     list-style: none;
+    border-bottom: 0.5px solid black;
     /* border: 5px solid blue; */
-    background-color: black;
+    /* background-color: #D7DBDD; */
+    /* background-color: #574E61; */
+    text-decoration: none;
     
 }
 
 div ul .lin {
     border-radius: 7px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     padding: 6px;
     text-decoration: none;
-    font-family: 'News Cycle', sans-serif;
-    color: white;
+    /* font-family: 'News Cycle', sans-serif; */
+    font-family: KGBytheGraceofGodimport;
+    color: #7A7A7A;
     
+    
+}
+
+hr {
+    width: 80%;
+}
+
+div ul .lin:active {
+background-color: green;
 }
 
 .active {

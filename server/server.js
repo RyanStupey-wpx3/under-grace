@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const massive = require('massive');
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -8,10 +8,10 @@ const authCtrl = require('./controllers/authController.js')
 const userCtrl = require('./controllers/userctrlr.js')
 const cloudin = require('cloudinary')
 const nodeMailer = require('nodemailer')
-require('dotenv').config();
 const app = express();
+require('dotenv').config();
 
-app.use(cors()); //<-- check postman to see if you need cors
+// app.use(cors()); //<-- check postman to see if you need cors
 
 
 app.use(bodyParser.json());
@@ -28,22 +28,25 @@ app.use(session({
     }
 }))
 
-massive(process.env.DB_CONNECTION_STRING) //<-- need to input connection string into .env file
+massive(process.env.CONNECTION_STRING) //<-- need to input connection string into .env file
 .then(dbInstance => app.set('db', dbInstance));
 
 const url = '/api' //<-- define endpoint base url here
 
 // app.post(`${url}/contact`, ctrl.create)
-
-app.get('/auth/callback', authCtrl.connect)
-//not even hitting end point
-// authCtrl.connect
-
+app.get('/api/getUserPostInfo', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.join_posts_and_users()
+    .then((postInfo) => {
+        res.status(200).send(postInfo)
+    })
+    .catch((err) => {
+        console.log('err', err)
+    })
+})
+// app.get('/auth/callback', authCtrl.connect)
 app.get('/api/user-data',userCtrl.getUser)
-
-
 app.post('/api/logout', userCtrl.destroyUser)
-
 app.post('/api/send-email', function (req, res) {
     console.log('hit!')
     let transporter = nodeMailer.createTransport({
@@ -75,15 +78,9 @@ app.post('/api/send-email', function (req, res) {
     });
 
 
-// app.post(url, ctrl.create)
-// app.get(`${url}/bins`, ctrl.getBins)
-
 
 app.get(`${url}/posts`, ctrl.getPosts)
 app.post(`${url}/posts`, ctrl.createPosts)
-// app.get(url, ctrl.read)
-// ctrl.read defined in controller
-
 app.put(`/api/posts/:id`, ctrl.update)
 
 app.delete(`${url}/post/:id`, ctrl.delete_post)

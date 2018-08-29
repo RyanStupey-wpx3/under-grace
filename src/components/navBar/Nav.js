@@ -29,19 +29,26 @@ export default class Nav extends Component {
     //     }                                                         
     //     return testSelector
     // }
-   
+
+    addActiveClass(){
+        let individualNavLink = document.getElementsByClassName("lin")
+        individualNavLink.classList.toggle("active")
+    }
+//    trying to have nav links show active page
     render() {
         
         return (
             <header className="navParent">
-                <h1>Grace after Fire</h1>
+                <h1>Grace after Fire . . .</h1>
+                <hr/>
                  <ul  id="navUl">
-                        <Link to="/home"><li id="A" className="lin">HOME</li></Link>
+                        <Link to="/"><li id="A" className="lin">HOME</li></Link>
                         <Link to="/blog"><li id="B" className="lin">BLOG</li></Link>
                         <Link to="/contact"><li id="C" className="lin">CONTACT</li></Link>
                         <Link to="/about"><li id="D" className="lin">ABOUT</li></Link>
                         <Link to="/"><li id="E" className="lin">LOGOUT</li></Link>
                  </ul>
+                 
             </header>
         );
     }

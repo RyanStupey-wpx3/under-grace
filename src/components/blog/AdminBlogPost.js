@@ -5,7 +5,9 @@ import Delete_button from './Delete_post'
 import Edit_button from './Edit_button';
 import EditBlog from '../editBlog/EditBlog'
 import Nav from '../navBar/Nav';
-import axios from 'axios'
+import axios from 'axios';
+import './blog.css';
+
  class AdminBlogPost extends Component {
     constructor(props){
         super(props)
@@ -14,10 +16,15 @@ import axios from 'axios'
             newBlogStatus: false,
             message: '',
             blogs: [],
-            adminButton:''
+            adminButton:'',
+            usersAndPosts:[],
+            editStatus: false,
+            newId: '',
         }
-        this.showTools = this.showTools.bind(this)
+        // this.showTools = this.showTools.bind(this)
         this.delete_post = this.delete_post.bind(this)
+        // this.postToDatabase = this.postToDatabase.bind(this)
+        this.toggleState = this.toggleState.bind(this)
 
     }
 
@@ -33,12 +40,20 @@ import axios from 'axios'
             .catch((err) => {
                 console.log('err', err)
             })
+        axios.get('/api/getUserPostInfo')
+        .then((resp) => {
+            console.log('resp.data', resp.data)
+            this.setState({
+                usersAndPosts: resp.data
+            })
+        })
         
     }
 
     showTools(){
-        if (this.props.user){
-            if (this.props.user.user_status === 'admin' && this.state.newBlogStatus === false){
+        // if (this.props.user){
+            // if (this.props.user.user_status === 'admin' && this.state.newBlogStatus === false){
+            if (this.state.newBlogStatus === false){
                 this.setState({
                     newBlogStatus: true,
                     adminButton:"hide admin tools"
@@ -49,13 +64,33 @@ import axios from 'axios'
                          adminButton:"show admin tools"
                         })
                     }
-        } else {
-            this.setState({
-                message: 'sorry, please sign in',
-            })
-        }
+
+                    this.forceUpdate()
+        // } else {
+            // this.setState({
+                // message: 'sorry, please sign in',
+            // })
+        // }
         
     }
+
+    // postToDatabase(){
+    //     console.log("this.state from ptbs", this.state)
+    //     axios.post('/api/posts', {post_user: this.props.user.username, post_date: this.state.date, title: this.state.title, main_content: this.state.mainContent, graphic: this.state.uploadedFileCloudinaryUrl})
+    //     .then((resp) => {
+    //         console.log('resp.data', resp.data)
+    //         console.log('confirmed to db')
+    //         this.setState({
+    //             name:'',
+    //             date:'',
+    //             title:'',
+    //             mainContent:'',
+    //         })
+    //     })
+    //     .catch((err) => {console.log('err', err)})
+    // this.props.postState(this.state.post)
+    // }
+
 
     delete_post(id){
         console.log('id', id)
@@ -73,6 +108,42 @@ import axios from 'axios'
         }).catch((err) => {console.log('err', err)})
     }
 
+    submit_post(i, body){
+        console.log('i & body', i, HTMLBodyElement)
+        axios.put(`/api/posts/${i}`, {...body, post_id: i})
+        .then(() => {
+            console.log('hit put')
+        }).catch((err) => {
+            console.log('err', err)
+        })
+
+        axios.get('/api/posts')
+        .then((resp) => {
+            const blogs = resp.data
+            this.setState({
+                   blogs: blogs,
+                   adminButton: "show admin tools"
+               })
+       })
+        
+    }
+
+
+    //from blog.js togglestate()
+
+    toggleState(i){
+        if(this.state.editStatus){
+            this.setState({
+                editStatus: false,
+                newId: ""
+            })
+        } else {
+            this.setState({
+                editStatus: true,
+                newId: i
+            })
+        }
+    }
     
     render() {
         const displayBlogs = this.state.blogs.map((elem, i) => {
@@ -82,13 +153,22 @@ import axios from 'axios'
                              
                              <h2 className="title">{elem.title}</h2>
                              <img className="" src={elem.graphic} />
-                                 <p> <div className="blogImageDiv"></div>{elem.main_content}</p>
+                                 <div className="blogImageDiv"></div>{elem.main_content}
                          </div>
                          <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
                          <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>
                          {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>}
                      </div>)
  
+         })
+         
+
+         const displayUserInfoFromJoin = this.state.usersAndPosts.map((elem) => {
+             return (
+                 <div>
+                     <h4>{elem.post_user} posted on: {elem.post_date}</h4>
+                 </div>
+             )
          })
         return (
             <div className="body">
@@ -98,12 +178,18 @@ import axios from 'axios'
                     {this.props.user && <h3>{this.props.user.username}</h3>}
                     {this.state.message && <div>{this.state.message}</div>}
                     <button onClick={() => this.showTools()}>{this.state.adminButton}</button>
-                    {this.state.newBlogStatus && <NewBlog/>}
+                    <div className="foreignKey">
+                        <h2>userInfo from Join and foreign key:</h2>
+                        <div className="userInfoDiv">{displayUserInfoFromJoin}</div>
+                    </div>
+                         {this.state.newBlogStatus && <NewBlog postToDb={this.postToDatabase} name={this.state.name} date={this.state.date} title={this.state.title} mainContent={this.state.mainContent}/>}
+                         {/*postToDb={this.postToDatabase}*/}
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
                          </div>
                     </div>
+                   
                  </div>
                 <footer></footer>
            </div>
@@ -113,6 +199,10 @@ import axios from 'axios'
         );
     }
 }
+
+// const mapdispatchToProps = {
+//     post_body: post_body
+// }
 
 const mapStateToProps = (state) => {
     return {

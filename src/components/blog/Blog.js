@@ -10,7 +10,7 @@ import Delete_button from './Delete_post'
 import Edit_button from './Edit_button';
 import Nav from '../navBar/Nav';
 import EditBlog from '../editBlog/EditBlog'
-import ImageCrsl from '../carousel/Carousel'
+// import ImageCrsl from '../carousel/Carousel'
 
 
 class Blog extends Component {
@@ -21,8 +21,9 @@ class Blog extends Component {
             blogs: [],
             newBlogStatus: false,
             message: null,
-            editStatus: false,
-            newId: ''
+            // editStatus: false,
+            // newId: '',
+            randomDrinkDiv:[]
         }
 
     }
@@ -37,62 +38,100 @@ class Blog extends Component {
                 this.props.log_in(resp.data.user)
                 // console.log('this.props.user', this.props.user)
             })
-    }
-    toggleState(i){
-        if(this.state.editStatus){
+        axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+        .then((response) => {
+            console.log('response.data["drinks"]', response.data["drinks"])
             this.setState({
-                editStatus: false,
-                newId: ""
+            randomDrinkDiv: response.data['drinks']
             })
-        } else {
-            this.setState({
-                editStatus: true,
-                newId: i
-            })
-        }
-    }
-
-    submit_post(i, body){
-        console.log('i & body', i, HTMLBodyElement)
-        axios.put(`/api/posts/${i}`, {...body, post_id: i})
-        .then(() => {
-            console.log('hit put')
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.log('err', err)
         })
+
     }
-    
-        
+   //toggleState was here
+
+   // submitPost was here
     render() {
+
+
         const displayBlogs = this.state.blogs.map((elem, i) => {
            return(  <div key={elem.post_id} className="mainBlogContent">
                         <div className="mainContent">
                             <h2 className="title">{elem.title}</h2>
                             <img className="" src={elem.graphic} />
-                            <p> <div className="blogImageDiv"></div>{elem.main_content}</p>
+                             <div className="blogImageDiv"></div>{elem.main_content}
                         </div>
-                        {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>}
+                        {/* {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>} */}
                     </div>)
         })
+        const displayRandomDrinks = this.state.randomDrinkDiv.map((elem) => {
+            return ( 
+             <div className="random-drink-div">
+               <div>{elem.strDrink}</div>
+               <div className="img_div"> 
+               <img src={elem.strDrinkThumb}/> </div>
+     
+               <ol>
+                 <li> {elem.strIngredient1}</li>
+                 <li> {elem.strIngredient2}</li>
+                 <li> {elem.strIngredient3}</li>
+                 <li> {elem.strIngredient4}</li>
+                 <li> {elem.strIngredient5}</li>
+               </ol>
+               <div>{elem.strInstructions}</div>
+             </div>
+            )
+           })
+// posttoDB is nolonger a prop of newBlog because I changed it to a conditionally rendered route
+        
+    //  if (this.props.user){
+     if (1 == true){
         return (
             
             <div className="body">
                 <div className="central">
                     <Nav/>
-                    <div className="hero"><ImageCrsl/></div>
-                   {this.props.user.user_status && <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>}
+                    <div className="hero"></div>
+                   {/* { this.props.user.user_status === 'admin' && <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link> } */}
+                    <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>
                     {this.props.user && <h3>{this.props.user.username}</h3>}
                     {this.state.message && <div>{this.state.message}</div>}
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
+                            <div className="asideAD">{displayRandomDrinks}</div>
                          </div>
+                         
                     </div>
                  </div>
                 <footer></footer>
            </div>
         );
+
+    } else {
+        return(
+            <div className="body">
+                <div className="central">
+                    <Nav/>
+                    <div className="hero"></div>
+                    {this.state.message && <div>{this.state.message}</div>}
+                    <div className="text-cont-outer">
+                        <div className="text-content">
+                            <div className="displayBlogsParent">{displayBlogs}</div>
+                            <div className="asideAD">{displayRandomDrinks}</div>
+                         </div>
+                         
+                    </div>
+                 </div>
+                <footer></footer>
+           </div>
+        )
     }
+    
+    }
+
 }
 
 const mapdispatchToProps = {

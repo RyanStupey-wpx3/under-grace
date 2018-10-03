@@ -20,7 +20,7 @@ console.log(props)
             mainContent: this.props.blogs.main_content,
             uploadedFileCloudinaryUrl:'',
         }
-        this.postToDatabase = this.postToDatabase.bind(this)
+       
     }
 
     

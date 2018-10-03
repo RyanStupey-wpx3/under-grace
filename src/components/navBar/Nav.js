@@ -6,10 +6,16 @@ import './nav.css';
 export default class Nav extends Component {
     constructor(props){
         super(props)
+        this.clickedNav = React.createRef()
         this.state = {
-            liClass:'',
+            home: "prim",
+            contact: "prim",
+            about: "prim",
+            blog: "prim",
+            contact: "prim",
         }
-    
+        //make state properties have the same value so setstate code is easy
+        this.addActiveClass = this.addActiveClass.bind(this)
     }
     // menuChange(id){
     //     let testSelector = this.state.liClass;
@@ -30,23 +36,30 @@ export default class Nav extends Component {
     //     return testSelector
     // }
 
+    // function changeClass(keyInState, val){
+    //         if(keyInState === "home") {
+    //             this.setState({home: })
+    //         }
+    // }
+
     addActiveClass(){
-        let individualNavLink = document.getElementsByClassName("lin")
-        individualNavLink.classList.toggle("active")
+        // this.clickedNav.current
+        console.log('this.clickedNav.current', this.clickedNav.current)
+        this.clickedNav.current.classList.toggle("active")
     }
 //    trying to have nav links show active page
     render() {
         
         return (
             <header className="navParent">
-                <h1>Grace after Fire . . .</h1>
+                <h1>Grace after Fire</h1>
                 <hr/>
                  <ul  id="navUl">
-                        <Link to="/"><li id="A" className="lin">HOME</li></Link>
-                        <Link to="/blog"><li id="B" className="lin">BLOG</li></Link>
-                        <Link to="/contact"><li id="C" className="lin">CONTACT</li></Link>
-                        <Link to="/about"><li id="D" className="lin">ABOUT</li></Link>
-                        <Link to="/"><li id="E" className="lin">LOGOUT</li></Link>
+                        <Link to="/"><li ref={this.clickedNav} onClick={this.addActiveClass} id="A" className="lin">HOME</li></Link>
+                        <Link to="/blog"><li ref={this.clickedNav} onClick={this.addActiveClass} id="B" className="lin">BLOG</li></Link>
+                        <Link to="/contact"><li ref={this.clickedNav} onClick={this.addActiveClass} id="C" className="lin">CONTACT</li></Link>
+                        <Link to="/about"><li ref={this.clickedNav} onClick={this.addActiveClass} id="D" className="lin">ABOUT</li></Link>
+                        <Link to="/"><li ref={this.clickedNav} onClick={this.addActiveClass} id="E" className="lin">LOGOUT</li></Link>
                  </ul>
                  
             </header>

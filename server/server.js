@@ -44,29 +44,32 @@ app.get('/api/getUserPostInfo', (req, res) => {
         console.log('err', err)
     })
 })
-// app.get('/auth/callback', authCtrl.connect)
+app.get('/auth/callback', authCtrl.connect)
 app.get('/api/user-data',userCtrl.getUser)
 app.post('/api/logout', userCtrl.destroyUser)
 app.post('/api/send-email', function (req, res) {
     console.log('hit!')
+
+    console.log("req.body", req.body )
     let transporter = nodeMailer.createTransport({
         service: 'gmail',
         secure: false,
         port: 3535,
         auth: {
-            user: process.env.USERNAME,
+            user: 'ryan.stupey@gmail.com',
             pass: process.env.PASSWORD
         },
         tls: {
             rejectUnauthorized: false,
+
         }
     });
 
     let mailOptions = {
-        from: 'ryan.stupey@gmail.com', // sender address
-        to: req.body.to, // list of receivers
+        from: req.body.from, // sender address
+        to: 'ryan.stupey@gmail.com', // list of receivers
         subject: req.body.subject, // Subject line
-        html: `<h2>from:${req.body.name}</h2><br/><b>${req.body.message}</b>` // html body
+        html: `<h2>from:${req.body.name}</h2><br/><h2> Email: ${req.body.from}</h2><b>${req.body.message}</b>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

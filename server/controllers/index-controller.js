@@ -10,6 +10,10 @@ module.exports = {
                 console.log('err', err)
             });
         },
+
+        //////////////////////////
+        // still figuring out state auto update after blog post
+        // figured undo previous changed to posttodb and use that function to force a rerender 
     
         getOne:(req, res) => {
             const dbInstsance = req.app.get('db');

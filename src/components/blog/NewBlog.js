@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './newblog.css';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {postState} from '../../redux/reducer';
+import {changeBool} from '../../redux/reducer';
 // import ImageUploader from '../ImageUploadComponent'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -23,9 +23,9 @@ class NewBlog extends Component {
             title:"",
             mainContent: "",
             uploadedFileCloudinaryUrl: "",
-
+            post: 0,
             eventState: this.props.event,
-
+            newBlogBool: this.props.postBool
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -44,12 +44,8 @@ class NewBlog extends Component {
     //     this.setState({ [name]: value, event: event })
     //   }
 
-    handleChange(event){
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
+    
       handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
       }
     
@@ -85,6 +81,11 @@ class NewBlog extends Component {
         console.log('this.state.uploadedFileCloudinaryUrl', this.state.uploadedFileCloudinaryUrl)
       }
 
+      handleChange(event){
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+
       postToDatabase(){
         console.log("this.state from ptbs", this.state)
         // *** change back post_user to this.props.user.username
@@ -92,21 +93,37 @@ class NewBlog extends Component {
         .then((resp) => {
             console.log('resp.data', resp.data)
             console.log('confirmed to db')
+            this.setState({
+                imageUrl: null,
+                name: "stupeyr@gmail.com",
+                date: "",
+                title:"",
+                mainContent: "",
+                uploadedFileCloudinaryUrl: "",
+
+            })
         })
         .catch((err) => {console.log('err', err)})
-
-        this.props.postState(this.state.post)
-
-        //next steps test action rerenderTrigger dispatch on adding newBlog and see if it updates state.
-
+            /* if newBlogBool === false: setState of newBlogBool to true and dispatch changeBool action*/
+        if(this.props.postBool === false){
+            // this.setState({newBlogBool: true})
+            this.props.changeBool(true)
+            console.log('this.props.postBool from newBlog ===', this.props.postBool)
+        } else if(this.props.postBool === true) {
+        // this.setState({newBlogBool: false})
+            this.props.changeBool(false)/* change redux state back to false*/
+        }
+        
     }
 
+
     
+
     
 
     render() {
-        console.log('cloudinaryurl', this.state.uploadedFileCloudinaryUrl)
-        console.log('this.state', this.state)
+        // console.log('cloudinaryurl', this.state.uploadedFileCloudinaryUrl)
+        // console.log('this.state', this.state)
         const {name, date, title, mainContent} = this.state
     
         // const displayImage = this.state.imageUrl.map((elem) => {
@@ -144,20 +161,21 @@ class NewBlog extends Component {
             </div>
         </div>
         
-           
+        //    right now handling either post to db or this.handleChange 
         );
     }
 }
 
 const mapdispatchToProps = {
-    postState: postState,
+    changeBool: changeBool,
 }
 
 
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        event: state.event
+        event: state.event,
+        postBool:state.postBool
     }
 }
 

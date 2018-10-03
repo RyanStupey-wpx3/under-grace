@@ -27,7 +27,7 @@ class InputInfo extends Component {
     sendContactInfo(){
         console.log('hit function')
         const {name, subject, email, message} = this.state
-        axios.post('/api/send-email', {to: email, subject: subject, message: message, name: name})
+        axios.post('/api/send-email', {from: email, subject: subject, message: message, name: name})
         .then((resp) => {
             // this.setState({
             //     name: null,

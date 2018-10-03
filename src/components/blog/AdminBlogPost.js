@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewBlog from './NewBlog'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {changeBool} from '../../redux/reducer';
 import Delete_button from './Delete_post'
 import Edit_button from './Edit_button';
 import EditBlog from '../editBlog/EditBlog'
@@ -13,6 +14,7 @@ import './blog.css';
         super(props)
 
         this.state = {
+            updateFromNewPost: this.props.postBool,
             newBlogStatus: false,
             message: '',
             blogs: [],
@@ -20,12 +22,14 @@ import './blog.css';
             usersAndPosts:[],
             editStatus: false,
             newId: '',
+            mainContent: "",
         }
         // this.showTools = this.showTools.bind(this)
         this.delete_post = this.delete_post.bind(this)
         // this.postToDatabase = this.postToDatabase.bind(this)
         this.toggleState = this.toggleState.bind(this)
-
+        this.fetchPosts = this.fetchPosts.bind(this)
+        this.changeRedux = this.changeRedux.bind(this)
     }
 
     componentDidMount(){
@@ -42,7 +46,6 @@ import './blog.css';
             })
         axios.get('/api/getUserPostInfo')
         .then((resp) => {
-            console.log('resp.data', resp.data)
             this.setState({
                 usersAndPosts: resp.data
             })
@@ -50,7 +53,45 @@ import './blog.css';
         
     }
 
+    fetchPosts(){
+        console.log('hit fetch')
+        axios.get('/api/posts')
+        .then((resp) => {
+            const blogs = resp.data
+                 this.setState({
+                        blogs: blogs,
+                        adminButton: "show admin tools"
+                    })
+            })
+            .catch((err) => {
+                console.log('err', err)
+            })
+    }
+
+    changeRedux(){
+        this.props.changeBool(false)
+    }
+
+    componentWillUpdate(oldprops) {
+        console.log(" hit compWillUpdate")
+        // this.props.postBool in redux should be false from NewBlog
+        console.log('this.props.postBool from Admin compWillUpdate', this.props.postBool)
+
+        if (this.props.postBool !== oldprops.postBool) {
+            // this.changeRedux()
+            console.log(" hit if statement in CompWillUpdate: true")
+            this.fetchPosts()
+        } else {
+            console.log(" hit if statement in CompWillUpdate: false")
+            return null;
+        }
+        
+      }
+       
+    
+
     showTools(){
+
         // if (this.props.user){
             // if (this.props.user.user_status === 'admin' && this.state.newBlogStatus === false){
             if (this.state.newBlogStatus === false){
@@ -65,31 +106,12 @@ import './blog.css';
                         })
                     }
 
-                    this.forceUpdate()
-        // } else {
-            // this.setState({
-                // message: 'sorry, please sign in',
-            // })
-        // }
+                    this.setState({ state: this.state });
         
     }
 
-    // postToDatabase(){
-    //     console.log("this.state from ptbs", this.state)
-    //     axios.post('/api/posts', {post_user: this.props.user.username, post_date: this.state.date, title: this.state.title, main_content: this.state.mainContent, graphic: this.state.uploadedFileCloudinaryUrl})
-    //     .then((resp) => {
-    //         console.log('resp.data', resp.data)
-    //         console.log('confirmed to db')
-    //         this.setState({
-    //             name:'',
-    //             date:'',
-    //             title:'',
-    //             mainContent:'',
-    //         })
-    //     })
-    //     .catch((err) => {console.log('err', err)})
-    // this.props.postState(this.state.post)
-    // }
+
+   
 
 
     delete_post(id){
@@ -144,8 +166,15 @@ import './blog.css';
             })
         }
     }
+
+    handleChange(event){
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
     
     render() {
+       
+        // console.log('this.state.mainContent', this.state.mainContent)
         const displayBlogs = this.state.blogs.map((elem, i) => {
             return(  <div key={elem.post_id} className="mainBlogContent">
    
@@ -157,7 +186,7 @@ import './blog.css';
                          </div>
                          <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
                          <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>
-                         {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>}
+                         {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem} />}
                      </div>)
  
          })
@@ -170,6 +199,8 @@ import './blog.css';
                  </div>
              )
          })
+
+          
         return (
             <div className="body">
                 <div className="central">
@@ -182,7 +213,7 @@ import './blog.css';
                         <h2>userInfo from Join and foreign key:</h2>
                         <div className="userInfoDiv">{displayUserInfoFromJoin}</div>
                     </div>
-                         {this.state.newBlogStatus && <NewBlog postToDb={this.postToDatabase} name={this.state.name} date={this.state.date} title={this.state.title} mainContent={this.state.mainContent}/>}
+                         {this.state.newBlogStatus && <NewBlog handleChange={this.handleChange} postToDb={this.postToDatabase} name={this.state.name} date={this.state.date} title={this.state.title} mainContent={this.state.mainContent}/>}
                          {/*postToDb={this.postToDatabase}*/}
                     <div className="text-cont-outer">
                         <div className="text-content">
@@ -203,10 +234,15 @@ import './blog.css';
 // const mapdispatchToProps = {
 //     post_body: post_body
 // }
+const mapdispatchToProps = {
+    changeBool: changeBool,
+}
+
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        postBool: state.postBool
     }
 }
 

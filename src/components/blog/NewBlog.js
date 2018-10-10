@@ -25,11 +25,14 @@ class NewBlog extends Component {
             uploadedFileCloudinaryUrl: "",
             post: 0,
             eventState: this.props.event,
-            newBlogBool: this.props.postBool
+            newBlogBool: this.props.postBool,
+            alertBox: false,
+
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.postToDatabase = this.postToDatabase.bind(this)
+        this.setAlertState = this.setAlertState.bind(this)
     }
    
     // handleChange(event) {
@@ -100,24 +103,28 @@ class NewBlog extends Component {
                 title:"",
                 mainContent: "",
                 uploadedFileCloudinaryUrl: "",
-
+                alertBox: true,
             })
+            
+            if(this.props.postBool === false){
+                this.props.changeBool(true)
+                console.log('this.props.postBool from newBlog ===', this.props.postBool)
+            } else if(this.props.postBool === true) {
+                this.props.changeBool(false)/* change redux state back to false*/
+            }
+            
         })
         .catch((err) => {console.log('err', err)})
-            /* if newBlogBool === false: setState of newBlogBool to true and dispatch changeBool action*/
-        if(this.props.postBool === false){
-            // this.setState({newBlogBool: true})
-            this.props.changeBool(true)
-            console.log('this.props.postBool from newBlog ===', this.props.postBool)
-        } else if(this.props.postBool === true) {
-        // this.setState({newBlogBool: false})
-            this.props.changeBool(false)/* change redux state back to false*/
-        }
-        
+            /* if postBool === false:  dispatch changeBool action*/
+     
     }
 
 
-    
+    setAlertState(){
+        this.setState({
+            alertBox: false,
+        })
+    }
 
     
 
@@ -131,16 +138,23 @@ class NewBlog extends Component {
         //         <img src={elem.}
         //     </div>
         // })
+
+        const alertBox = 
+        <div onClick={() => {this.setState({alertBox: false})}}>
+            <div className="alert">
+                <span className="closebtn" onClick={() => this.setAlertState()}> &times;</span> 
+                your post has been submitted
+            </div>
+        </div>
         
         return (
             <div>
             <div className="inputContainer">
-                        
+            {this.state.alertBox && alertBox}
             <Dropzone className="dropZoneDiv"
                 multiple={false}
                 accept="image/*"
                 onDrop={this.onImageDrop.bind(this)}>
-                {/* <p>Drop an image or click to select a file to upload.</p> */}
                 <img className="uploadedImage" src={this.state.uploadedFileCloudinaryUrl} />
                 
                 {this.state.uploadedFileCloudinaryUrl === '' ? null :
@@ -150,10 +164,11 @@ class NewBlog extends Component {
             </div>}
             </Dropzone>
                 <form onSubmit={this.handleSubmit} className="postForm">
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="name" value={this.state.name}  className="usernameInput" placeholder="username: bring in through redux"/>
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="date" value={this.state.date} className="dateInput" placeholder="date of: "/>
-                    <input type="text"onChange={(e) => this.handleChange(e)}  name="title" value={this.state.title} className="titleInput" placeholder="title"/>
-                    <textarea onChange={(e) => this.handleChange(e)}  name="mainContent" value={this.state.mainContent} className="blogContent" placeholder="blog message" />
+                <div className="dragImage">upload an image</div>
+                    <input type="text"onChange={(e) => this.handleChange(e)}  name="name" value={this.state.name}  className="usernameInput input" placeholder="username: bring in through redux"/>
+                    <input type="text"onChange={(e) => this.handleChange(e)}  name="date" value={this.state.date} className="dateInput input" placeholder="date of: "/>
+                    <input type="text"onChange={(e) => this.handleChange(e)}  name="title" value={this.state.title} className="titleInput input" placeholder="title"/>
+                    <textarea onChange={(e) => this.handleChange(e)}  name="mainContent" value={this.state.mainContent} className="blogContent input" placeholder="blog message" />
                     <input className="submitButton" type="submit" onClick={() => this.postToDatabase()} value="post"/>
                     {/* pass postToDatabase as props down from adminblogPost */}
                 </form>

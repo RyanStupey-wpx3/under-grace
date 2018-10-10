@@ -23,6 +23,7 @@ import './blog.css';
             editStatus: false,
             newId: '',
             mainContent: "",
+            hasPostedMessage: "your post has been submitted"
         }
         // this.showTools = this.showTools.bind(this)
         this.delete_post = this.delete_post.bind(this)
@@ -60,7 +61,8 @@ import './blog.css';
             const blogs = resp.data
                  this.setState({
                         blogs: blogs,
-                        adminButton: "show admin tools"
+                        adminButton: "show admin tools",
+                        message: "your post has been submitted"
                     })
             })
             .catch((err) => {
@@ -184,8 +186,8 @@ import './blog.css';
                              <img className="" src={elem.graphic} />
                                  <div className="blogImageDiv"></div>{elem.main_content}
                          </div>
-                         <Delete_button delete_post={this.delete_post} index={elem.post_id}/>
-                         <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>
+                        {this.state.newBlogStatus && <Delete_button delete_post={this.delete_post} index={elem.post_id}/>}
+                        {this.state.newBlogStatus &&  <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>}
                          {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem} />}
                      </div>)
  
@@ -207,14 +209,15 @@ import './blog.css';
                     <Nav/>
                     <div className="hero"></div>
                     {this.props.user && <h3>{this.props.user.username}</h3>}
-                    {this.state.message && <div>{this.state.message}</div>}
                     <button onClick={() => this.showTools()}>{this.state.adminButton}</button>
-                    <div className="foreignKey">
+                    {/* <div className="foreignKey">
                         <h2>userInfo from Join and foreign key:</h2>
                         <div className="userInfoDiv">{displayUserInfoFromJoin}</div>
-                    </div>
+                    </div> */}
+                        <div className="newBlogDivAdmin">
                          {this.state.newBlogStatus && <NewBlog handleChange={this.handleChange} postToDb={this.postToDatabase} name={this.state.name} date={this.state.date} title={this.state.title} mainContent={this.state.mainContent}/>}
                          {/*postToDb={this.postToDatabase}*/}
+                         </div>
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>

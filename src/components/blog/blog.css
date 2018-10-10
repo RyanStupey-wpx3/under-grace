@@ -7,6 +7,12 @@
     font-size: 42px;
 }
 
+.newBlogDivAdmin {
+    border: 2px solid red;
+    padding: 0;
+    margin: 0;
+}
+
 .text-content {
     font-family: 'Glegoo', serif;
 }

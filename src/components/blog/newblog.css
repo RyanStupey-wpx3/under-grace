@@ -14,6 +14,37 @@
     border-radius: 50%;
 } */
 
+.alert {
+    padding: 20px;
+    background-color: blue; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dragImage {
+    position: relative;
+    left: 4%;
+    top: 7rem;
+    font-size: 18px;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
 .usernameInput{
     position: relative;
     float: right;
@@ -56,10 +87,14 @@
     width: 12rem;
     height: 2rem;
 }
-
+.input{
+    padding: 0;
+}
 .postForm {
-    /* border: 5px solid red; */
+    border: 5px solid red;
+    
     height: 16rem;
+    margin: 0;
 }
 .dropZoneDiv {
     display: inline;

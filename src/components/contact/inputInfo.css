@@ -11,17 +11,19 @@
     margin: 0.3rem auto;
     display: block;
     width: 60%;
+    height: 1.5rem;
     /* margin: 0.5rem; */
     background-color: #EDEDED;
 }
 .messageBox{
     width: 59.7%;
-    height: 4rem;
+    height: 6rem;
 }
 .sendButton {
     position: relative;
-    left: 68rem;
+    left: 2x    rem;
     margin-right: 10.4rem;
     width: 6rem;
+    padding: 0.5rem;
     font-size: 18px;
 }

@@ -151,20 +151,23 @@ class NewBlog extends Component {
             <div>
             <div className="inputContainer">
             {this.state.alertBox && alertBox}
-            <Dropzone className="dropZoneDiv"
+            
+            
+                <form onSubmit={this.handleSubmit} className="postForm">
+                <Dropzone className="dropZoneDiv"
                 multiple={false}
                 accept="image/*"
                 onDrop={this.onImageDrop.bind(this)}>
+                <div className="dragImage">upload an image</div>
                 <img className="uploadedImage" src={this.state.uploadedFileCloudinaryUrl} />
                 
                 {this.state.uploadedFileCloudinaryUrl === '' ? null :
             <div>
                 {/* <p>{this.state.uploadedFile.name}</p> */}
-               
+                
             </div>}
+            
             </Dropzone>
-                <form onSubmit={this.handleSubmit} className="postForm">
-                <div className="dragImage">upload an image</div>
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="name" value={this.state.name}  className="usernameInput input" placeholder="username: bring in through redux"/>
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="date" value={this.state.date} className="dateInput input" placeholder="date of: "/>
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="title" value={this.state.title} className="titleInput input" placeholder="title"/>

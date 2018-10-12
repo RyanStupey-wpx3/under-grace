@@ -26,10 +26,10 @@
 }
 
 .pod {
-    border: 1px solid #ff8000;
-    border-radius: 50%;
-    height: 8rem;
-    width: 8rem;
+    /* border: 1px solid #ff8000; */
+    /* border-radius: 50%; */
+    /* height: 8rem; */
+    /* width: 8rem; */
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 4rem;
@@ -42,11 +42,26 @@
 }
 
 .pod img {
-    border: 1px solid #ff8000;
+    /* border: 1px solid #ff8000; */
     border-radius: 50%;
-    height: 8rem;
-    width: 9rem;
-    
+    height: 8.5rem;
+    width: 8.5rem;
+    padding:0;
+    margin:0;
+}
+
+.bottomPodWords {
+    /* border: 2px solid red; */
+    margin: 0;
+    position: relative;
+    left: 2rem;
+    font-size: 1.5rem;
+}
+.love {
+    left: 2.3rem;
+}
+.passion{
+    left: 1.8rem;
 }
 
 .text-cont-outer{

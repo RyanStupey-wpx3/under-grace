@@ -51,10 +51,7 @@ ul a {
     height: 3rem;
     justify-content: space-around;
     list-style: none;
-    border-bottom: 0.5px solid black;
     /* border: 5px solid blue; */
-    /* background-color: #D7DBDD; */
-    /* background-color: #574E61; */
     text-decoration: none;
     
 }

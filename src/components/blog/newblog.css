@@ -18,7 +18,7 @@
     padding: 20px;
     background-color: blue; /* Red */
     color: white;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 
 /* The close button */
@@ -34,8 +34,8 @@
 }
 
 .dragImage {
-    position: relative;
-    left: 4%;
+    position: absolute;
+    left: 24%;
     top: 7rem;
     font-size: 18px;
 }
@@ -83,7 +83,7 @@
     /* border: 2px solid yellow; */
     position: relative;
     top:17rem;
-    left: 52.2rem;
+    left: 43rem;
     width: 12rem;
     height: 2rem;
 }
@@ -91,18 +91,23 @@
     padding: 0;
 }
 .postForm {
-    border: 5px solid red;
-    
+    /* border: 5px solid red; */
     height: 16rem;
-    margin: 0;
+    margin-left: 10%;
+    position: relative;
 }
 .dropZoneDiv {
-    display: inline;
+    border: 2px solid blue;
+    display: inline-block;
     position: absolute;
+    /* top: 1em; */
+    /* left: 3rem; */
+    width: 28%;
+    height: 96%;
 }
 
 .uploadedImage {
-    /* border: 4px solid green; */
-    height: 16rem;
-    width: 14rem;
+    /* border: 2px solid green; */
+    height: 100%;
+    
 }

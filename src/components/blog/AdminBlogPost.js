@@ -182,13 +182,15 @@ import './blog.css';
    
                          <div className="mainContent">
                              
-                             <h2 className="title">{elem.title}</h2>
+                             <p className="title">{elem.title}</p>
+                             <h4 className="postUser"> written by: {elem.post_user}</h4>
                              <img className="" src={elem.graphic} />
                                  <div className="blogImageDiv"></div>{elem.main_content}
                          </div>
                         {this.state.newBlogStatus && <Delete_button delete_post={this.delete_post} index={elem.post_id}/>}
                         {this.state.newBlogStatus &&  <Edit_button toggleState={() => this.toggleState(elem.post_id)}/>}
                          {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem} />}
+                         <hr className="dividerHr"/>
                      </div>)
  
          })

@@ -8,7 +8,7 @@
 }
 
 .newBlogDivAdmin {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     padding: 0;
     margin: 0;
 }
@@ -16,13 +16,7 @@
 .text-content {
     font-family: 'Glegoo', serif;
 }
-.foreignKey h2{
-    text-decoration: underline;
-}
-.foreignKey .userInfoDiv {
-    position: relative;
-    left: 3rem;
-}
+
 
 .random-drink-div{
     color: white;
@@ -41,6 +35,16 @@
     top: 0;
     left: 35%;
     /* margin: 0 auto; */
+}
+.title{
+    /* border: 2px solid red; */
+    margin: 0;
+    font-size: 62px;
+}
+.dividerHr{
+    width: 100%;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
 }
 @media (max-width: 1000px) {
     .text-content {

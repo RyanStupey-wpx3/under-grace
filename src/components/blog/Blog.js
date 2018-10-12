@@ -101,7 +101,7 @@ class Blog extends Component {
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
-                            <div className="asideAD">{displayRandomDrinks}</div>
+                            {/* <div className="asideAD">{displayRandomDrinks}</div> */}
                          </div>
                          
                     </div>
@@ -120,7 +120,7 @@ class Blog extends Component {
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
-                            <div className="asideAD">{displayRandomDrinks}</div>
+                            {/* <div className="asideAD">{displayRandomDrinks}</div> */}
                          </div>
                          
                     </div>

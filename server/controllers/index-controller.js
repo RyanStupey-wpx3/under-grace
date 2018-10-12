@@ -26,7 +26,7 @@ module.exports = {
     
         getPosts:(req, res) => {
             const dbInstsance = req.app.get('db');
-    
+            
             dbInstsance.get_posts()
             .then(posts => res.status(200).send(posts)).catch((err) => console.log('err', err));
         },

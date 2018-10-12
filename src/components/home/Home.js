@@ -90,9 +90,9 @@ class Home extends Component {
                         
                     </div>
                     <div className="galleryLink">
-                       <Link to='/blog'> <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/></div></Link>
-                        <div className="pod i-2"><img src={require('../../images/ihaventforgot/image10.png')}/> </div>
-                        <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/></div>
+                        <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/><p className="bottomPodWords love">Love</p></div>
+                        <div className="pod i-2"><img src={require('../../images/ihaventforgot/image10.png')}/><p className="bottomPodWords grace">Grace</p> </div>
+                        <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/><p className="bottomPodWords passion">Passion</p></div>
                     </div>
                      </div>
                 <footer>

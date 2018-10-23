@@ -4,6 +4,7 @@ import './styles/App.css';
 import {Link} from 'react-router-dom';
 import routes from './routes'
 import InputInfo from './components/contact/InputInfo'
+import Nav from '../src/components/navBar/Nav';
 import Home from './components/home/Home'
 import Login from './components/login/Login';
 import TransitionGroup from "react-transition-group/TransitionGroup";
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       
       <div>
+        <Nav/>
           {routes}
       </div>
     );

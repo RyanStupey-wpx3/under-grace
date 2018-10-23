@@ -3,11 +3,13 @@
 }
 
 .contactForm{
+    /* border: 2px solid red; */
     margin-top: 3rem;
     margin-bottom: 3rem;
 }
 
 .inputField {
+    /* border: 2px solid red; */
     margin: 0.3rem auto;
     display: block;
     width: 60%;
@@ -16,14 +18,34 @@
     background-color: #EDEDED;
 }
 .messageBox{
+    /* border: 2px solid red; */
     width: 59.7%;
     height: 6rem;
 }
+.sendButtonParent{
+    /* border: 2px solid purple; */
+    width: 60%;
+    margin: 0 auto;
+}
 .sendButton {
+    /* border: 2px solid green; */
     position: relative;
-    left: 2x    rem;
-    margin-right: 10.4rem;
-    width: 6rem;
+    /* left: 63%; */
+    width: 16rem;
     padding: 0.5rem;
     font-size: 18px;
+}
+@media(max-width: 1100px){
+    .sendButton{
+        /* border: 2px solid blue; */
+        width: 10rem;
+        /* left: 64% */
+    }
+}
+@media(max-width: 700px){
+.sendButton{
+ /* border: 2px solid red; */
+ width: 6rem;
+ /* left: 54% */
+}
 }

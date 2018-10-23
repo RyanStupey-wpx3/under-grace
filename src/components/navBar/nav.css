@@ -10,9 +10,10 @@
     /* background-color: #574E61; */
     /* position: sticky; */
     top: 0rem;
+    padding: 5px 0 5px 0;
     z-index: 1;
     text-decoration: none;
-
+    /* border: 2px solid red; */
 }
 
 header {
@@ -46,7 +47,10 @@ ul a {
     text-decoration: none;
 }
 #navUl {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
+    padding-right: 1rem;
     flex-direction: row;
     height: 3rem;
     justify-content: space-around;
@@ -59,7 +63,9 @@ ul a {
 div ul .lin {
     border-radius: 7px;
     /* border: 1px solid grey; */
-    padding: 6px;
+    padding: 0.4rem;
+    
+    /* width: 6rem; */
     text-decoration: none;
     /* font-family: 'News Cycle', sans-serif; */
     font-family: KGBytheGraceofGodimport;
@@ -72,16 +78,15 @@ hr {
     width: 80%;
 }
 
-div ul .lin:active {
-background-color: green;
-}
 
 .active {
-    background-color: green;
+    background-color: #4399F5;
+    color: #7A7A7A;
   }
 
 @media (max-width: 600px) {
     .navUl  {
+        width: inherit; 
         position: relative;
         right: 1rem;
         top: -1.5rem;

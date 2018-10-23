@@ -37,7 +37,7 @@ module.exports = {
                               // once the code h
                               console.log('user', user.username)
                             
-                              res.redirect('/home/');
+                              res.redirect('/adminblog/uhoiu34r78ys7dvh4kjth8y/');
     
                         } else {
                             const user = userInfoResponse.data;
@@ -54,7 +54,7 @@ module.exports = {
                                     email: newUser.email,
                                 }
                                 req.session.user = userNew
-                                res.redirect('/home/');
+                                res.redirect('/adminblog/uhoiu34r78ys7dvh4kjth8y');
                             })
                         }
     

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import NewBlog from './NewBlog'
 import {connect} from 'react-redux';
 import {changeBool} from '../../redux/reducer';
+import {log_in} from '../../redux/reducer';
 import Delete_button from './Delete_post'
 import Edit_button from './Edit_button';
 import EditBlog from '../editBlog/EditBlog'
-import Nav from '../navBar/Nav';
 import axios from 'axios';
 import './blog.css';
 
@@ -23,7 +23,8 @@ import './blog.css';
             editStatus: false,
             newId: '',
             mainContent: "",
-            hasPostedMessage: "your post has been submitted"
+            hasPostedMessage: "your post has been submitted",
+            notLoggedIn: '',
         }
         // this.showTools = this.showTools.bind(this)
         this.delete_post = this.delete_post.bind(this)
@@ -31,8 +32,17 @@ import './blog.css';
         this.toggleState = this.toggleState.bind(this)
         this.fetchPosts = this.fetchPosts.bind(this)
         this.changeRedux = this.changeRedux.bind(this)
+        this.getUserInfo = this.getUserInfo.bind(this)
     }
-
+    getUserInfo(){
+        axios.get('/api/user-data')
+            .then((resp) => {
+                this.props.log_in(resp.data.user)
+            })
+            .catch((err) => {
+                console.log('err', err)
+            })
+    }
     componentDidMount(){
         axios.get('/api/posts')
         .then((resp) => {
@@ -51,11 +61,9 @@ import './blog.css';
                 usersAndPosts: resp.data
             })
         })
-        
     }
 
     fetchPosts(){
-        console.log('hit fetch')
         axios.get('/api/posts')
         .then((resp) => {
             const blogs = resp.data
@@ -75,16 +83,11 @@ import './blog.css';
     }
 
     componentWillUpdate(oldprops) {
-        console.log(" hit compWillUpdate")
         // this.props.postBool in redux should be false from NewBlog
-        console.log('this.props.postBool from Admin compWillUpdate', this.props.postBool)
-
         if (this.props.postBool !== oldprops.postBool) {
             // this.changeRedux()
-            console.log(" hit if statement in CompWillUpdate: true")
             this.fetchPosts()
         } else {
-            console.log(" hit if statement in CompWillUpdate: false")
             return null;
         }
         
@@ -94,9 +97,7 @@ import './blog.css';
 
     showTools(){
 
-        // if (this.props.user){
-            // if (this.props.user.user_status === 'admin' && this.state.newBlogStatus === false){
-            if (this.state.newBlogStatus === false){
+            if (this.state.newBlogStatus === false && this.props.user.user_status === 'admin'){
                 this.setState({
                     newBlogStatus: true,
                     adminButton:"hide admin tools"
@@ -111,21 +112,13 @@ import './blog.css';
                     this.setState({ state: this.state });
         
     }
-
-
-   
-
-
     delete_post(id){
-        console.log('id', id)
         axios.delete(`/api/post/${id}`)
         .then(() => {
             axios.get('/api/posts')
             .then((resp) => {
                     const blogs = resp.data
-                    console.log('resp.data', resp.data)
                     this.setState({blogs: blogs})
-                    
                 })
             .catch((err) => {
                  console.log('err', err)})
@@ -133,14 +126,13 @@ import './blog.css';
     }
 
     submit_post(i, body){
-        console.log('i & body', i, HTMLBodyElement)
+        // console.log('i & body', i, HTMLBodyElement)
         axios.put(`/api/posts/${i}`, {...body, post_id: i})
         .then(() => {
             console.log('hit put')
         }).catch((err) => {
             console.log('err', err)
         })
-
         axios.get('/api/posts')
         .then((resp) => {
             const blogs = resp.data
@@ -175,8 +167,11 @@ import './blog.css';
 
     
     render() {
-       
-        // console.log('this.state.mainContent', this.state.mainContent)
+        if(this.props.user){
+            console.log('user is in Session')
+        } else {
+            this.getUserInfo()
+        }
         const displayBlogs = this.state.blogs.map((elem, i) => {
             return(  <div key={elem.post_id} className="mainBlogContent">
    
@@ -204,11 +199,11 @@ import './blog.css';
              )
          })
 
-          
+         //if statement checking if there is a user in the current session - no need to check status - > only publis acess except for kathi
+         if (this.props.user){
         return (
             <div className="body">
                 <div className="central">
-                    <Nav/>
                     <div className="hero"></div>
                     {this.props.user && <h3>{this.props.user.username}</h3>}
                     <button onClick={() => this.showTools()}>{this.state.adminButton}</button>
@@ -226,13 +221,21 @@ import './blog.css';
                          </div>
                     </div>
                    
-                 </div>
+                 </div> 
                 <footer></footer>
            </div>
-                
+       
             
 
-        );
+            );
+            } else {
+                return (
+                    <div>
+                        <h2>please log in you are not an admin</h2>
+                    </div>
+                )
+            }
+        
     }
 }
 
@@ -241,6 +244,7 @@ import './blog.css';
 // }
 const mapdispatchToProps = {
     changeBool: changeBool,
+    log_in: log_in,
 }
 
 
@@ -251,4 +255,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AdminBlogPost);
+export default connect(mapStateToProps, mapdispatchToProps)(AdminBlogPost);

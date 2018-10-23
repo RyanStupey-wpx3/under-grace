@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 // import ImageCrsl from '../carousel/Carousel'
 import '../main.css'
 import './about.css'
-import Nav from '../navBar/Nav'
 
 export default class About extends Component {
     render() {
         return (
             <div className="body">
-                <Nav/>
                 <div className="hero"></div>
                 <div className="contentBody">
                 <div className="bibleVerseDiv">

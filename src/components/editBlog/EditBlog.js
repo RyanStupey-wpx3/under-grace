@@ -34,8 +34,8 @@ console.log(props)
     }
 
     handleImageUpload(file) {
-        let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        let upload = request.post(process.env.CLOUDINARY_UPLOAD_URL)
+                            .field('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET)
                             .field('file', file);
         console.log('upload', upload)
         upload.end((err, response) => {

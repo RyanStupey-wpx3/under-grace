@@ -54,7 +54,6 @@ class Home extends Component {
             
            <div className="body">
                 <div className="central">
-                <Nav/>
                 <div className="hero"></div>
                <div></div>
                 <div className="text-cont-outer">

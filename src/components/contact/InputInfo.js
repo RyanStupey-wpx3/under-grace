@@ -51,7 +51,7 @@ class InputInfo extends Component {
                         <input className="inputField" type="email" onChange={(e) => this.getState('email', e.target.value)} name="from" placeholder="your email"/>
                         <input className="inputField" type="text" onChange={(e) => this.getState('subject', e.target.value)} name="subject" placeholder="subject"/>
                         <textarea className=" inputField messageBox" onChange={(e) => this.getState('message', e.target.value)} name="message" placeholder="message"/>
-                        <input className="sendButton" onSubmit={() => alert(' your message has been sent!')} type="submit" value="send"/>
+                       <div className="sendButtonParent"> <input className="sendButton" onSubmit={() => alert(' your message has been sent!')} type="submit" value="send"/></div>
                     </form>
                     
                     

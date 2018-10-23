@@ -5,11 +5,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {log_in} from '../../redux/reducer'
 import axios from 'axios'
-import NewBlog from './NewBlog'
-import Delete_button from './Delete_post'
-import Edit_button from './Edit_button';
-import Nav from '../navBar/Nav';
-import EditBlog from '../editBlog/EditBlog'
 // import ImageCrsl from '../carousel/Carousel'
 
 
@@ -32,23 +27,13 @@ class Blog extends Component {
         .then((resp) => {
             const blogs = resp.data
             this.setState({blogs: blogs})
+            
             })
         axios.get('/api/user-data')
             .then((resp) => {
                 this.props.log_in(resp.data.user)
                 // console.log('this.props.user', this.props.user)
             })
-        axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-        .then((response) => {
-            console.log('response.data["drinks"]', response.data["drinks"])
-            this.setState({
-            randomDrinkDiv: response.data['drinks']
-            })
-        })
-        .catch((err) => {
-            console.log('err', err)
-        })
-
     }
    //toggleState was here
 
@@ -66,24 +51,6 @@ class Blog extends Component {
                         {/* {this.state.editStatus && this.state.newId == elem.post_id && <EditBlog submit_post={this.submit_post} index={elem.post_id} blogs={elem}/>} */}
                     </div>)
         })
-        const displayRandomDrinks = this.state.randomDrinkDiv.map((elem) => {
-            return ( 
-             <div className="random-drink-div">
-               <div>{elem.strDrink}</div>
-               <div className="img_div"> 
-               <img src={elem.strDrinkThumb}/> </div>
-     
-               <ol>
-                 <li> {elem.strIngredient1}</li>
-                 <li> {elem.strIngredient2}</li>
-                 <li> {elem.strIngredient3}</li>
-                 <li> {elem.strIngredient4}</li>
-                 <li> {elem.strIngredient5}</li>
-               </ol>
-               <div>{elem.strInstructions}</div>
-             </div>
-            )
-           })
 // posttoDB is nolonger a prop of newBlog because I changed it to a conditionally rendered route
         
     //  if (this.props.user){
@@ -92,16 +59,12 @@ class Blog extends Component {
             
             <div className="body">
                 <div className="central">
-                    <Nav/>
                     <div className="hero"></div>
-                   {/* { this.props.user.user_status === 'admin' && <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link> } */}
-                    <Link to="/adminblog/uhoiu34r78ys7dvh4kjth8y"><button>im an admin</button></Link>
-                    {this.props.user && <h3>{this.props.user.username}</h3>}
+                    {this.props.user && <h3> admin: {this.props.user.username}</h3>}
                     {this.state.message && <div>{this.state.message}</div>}
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
-                            {/* <div className="asideAD">{displayRandomDrinks}</div> */}
                          </div>
                          
                     </div>
@@ -114,13 +77,11 @@ class Blog extends Component {
         return(
             <div className="body">
                 <div className="central">
-                    <Nav/>
                     <div className="hero"></div>
                     {this.state.message && <div>{this.state.message}</div>}
                     <div className="text-cont-outer">
                         <div className="text-content">
                             <div className="displayBlogsParent">{displayBlogs}</div>
-                            {/* <div className="asideAD">{displayRandomDrinks}</div> */}
                          </div>
                          
                     </div>

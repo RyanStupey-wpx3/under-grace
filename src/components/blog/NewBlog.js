@@ -7,10 +7,8 @@ import {changeBool} from '../../redux/reducer';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
-const CLOUDINARY_UPLOAD_PRESET = 'jq5jchmx'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dpnlwo2iw/upload'
-
-
+// const CLOUDINARY_UPLOAD_PRESET = 'jq5jchmx'
+// const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dpnlwo2iw/upload'
 
 class NewBlog extends Component {
     constructor(props){
@@ -35,19 +33,6 @@ class NewBlog extends Component {
         this.setAlertState = this.setAlertState.bind(this)
     }
    
-    // handleChange(event) {
-    //     // console.log(event.target)
-    //     this.setState({ [event.target.name]: event.target.value });
-    //     this.props.postState(this.state.post)
-    //     console.log('this.state.post', this.state.post)
-    //   }
-
-    // onChange = (event) => {
-    //     const { name } = event.target.name
-    //     this.setState({ [name]: value, event: event })
-    //   }
-
-    
       handleSubmit(event) {
         event.preventDefault();
       }
@@ -66,10 +51,9 @@ class NewBlog extends Component {
     }
 
     handleImageUpload(file) {
-        let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        let upload = request.post(process.env.CLOUDINARY_UPLOAD_URL)
+                            .field('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET)
                             .field('file', file);
-        console.log('upload', upload)
         upload.end((err, response) => {
           if (err) {
             console.error(err);
@@ -81,7 +65,6 @@ class NewBlog extends Component {
             });
           }
         });
-        console.log('this.state.uploadedFileCloudinaryUrl', this.state.uploadedFileCloudinaryUrl)
       }
 
       handleChange(event){
@@ -90,11 +73,9 @@ class NewBlog extends Component {
 
 
       postToDatabase(){
-        console.log("this.state from ptbs", this.state)
         // *** change back post_user to this.props.user.username
         axios.post('/api/posts', {post_user: this.state.name, post_date: this.state.date, title: this.state.title, main_content: this.state.mainContent, graphic: this.state.uploadedFileCloudinaryUrl})
         .then((resp) => {
-            console.log('resp.data', resp.data)
             console.log('confirmed to db')
             this.setState({
                 imageUrl: null,
@@ -108,7 +89,6 @@ class NewBlog extends Component {
             
             if(this.props.postBool === false){
                 this.props.changeBool(true)
-                console.log('this.props.postBool from newBlog ===', this.props.postBool)
             } else if(this.props.postBool === true) {
                 this.props.changeBool(false)/* change redux state back to false*/
             }

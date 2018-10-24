@@ -6,7 +6,6 @@ import InputInfo from '../contact/InputInfo'
 import {Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {log_in} from '../../redux/reducer';
-import ImageCrsl from '../carousel/Carousel';
 import Nav from '../navBar/Nav';
 class Home extends Component {
     constructor(props) {
@@ -90,7 +89,7 @@ class Home extends Component {
                     </div>
                     <div className="galleryLink">
                         <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/><p className="bottomPodWords love">Love</p></div>
-                        <div className="pod i-2"><img src={require('../../images/ihaventforgot/image10.png')}/><p className="bottomPodWords grace">Grace</p> </div>
+                        <div className="pod i-2"><img src={require('../../images/image10.jpg')}/><p className="bottomPodWords grace">Grace</p> </div>
                         <div className="pod i-3"><img src={require('../../images/liveBurn.jpg')}/><p className="bottomPodWords passion">Passion</p></div>
                     </div>
                      </div>

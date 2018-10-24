@@ -3,7 +3,6 @@ import './newblog.css';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {changeBool} from '../../redux/reducer';
-// import ImageUploader from '../ImageUploadComponent'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 

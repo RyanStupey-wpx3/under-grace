@@ -42,7 +42,7 @@ module.exports = {
                         } else {
                             const user = userInfoResponse.data;
                             console.log('user',user)
-                            return req.app.get('db').create_user([user.sub, user.name, user_status, user.picture, user.email])
+                            return req.app.get('db').create_user([user.sub, user.name, 'admin', user.picture, user.email])
                             .then((newUser) => {
                                 // if it doesnt work --------------------change /\ to user.sub
                                 console.log('newUser', newUser)

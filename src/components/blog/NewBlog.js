@@ -21,6 +21,9 @@ class NewBlog extends Component {
             mainContent: "",
             uploadedFileCloudinaryUrl: "",
             post: 0,
+            /////////changed///////////
+            uploadedFile:{},
+            ///////////////////////////
             eventState: this.props.event,
             newBlogBool: this.props.postBool,
             alertBox: false,
@@ -130,8 +133,6 @@ class NewBlog extends Component {
             <div>
             <div className="inputContainer">
             {this.state.alertBox && alertBox}
-            
-            
                 <form onSubmit={this.handleSubmit} className="postForm">
                 <Dropzone className="dropZoneDiv"
                 multiple={false}

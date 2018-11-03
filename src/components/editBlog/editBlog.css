@@ -1,0 +1,70 @@
+.editBlogParent{
+    /* border: 2px solid blue; */
+    height: 35rem;
+}
+
+.editPostForm{
+    /* border: 2px solid red; */
+    display: inline-block;
+    position: relative;
+    top:-1rem;
+    width: 100%;
+    /* width: 71%; */
+}
+
+.editDropZoneDiv{
+    /* border: 5px solid blue; */
+    height: 11rem;
+    width: 100%;
+    display: inline-block;
+}
+.editUploadedImage{
+    width: 25rem;
+    margin: 0 30%;
+    height: 100%;
+}
+.editUploadTxt{
+    position: absolute;
+    left: 13%;
+}
+
+.editUsernameInput{
+    height: 1.5rem;
+}
+.editTitleInput{
+    height: 1.5rem;
+}
+.editDateInput{
+    height: 1.5rem;
+}
+.editContent{
+    position: relative;
+    height: 11.5rem;
+    width: 70%;
+    overflow: hidden;
+    resize: none;
+}
+.editSubmitButton{
+    /* border: 2px solid green; */
+    position: relative;
+    /* top: 30rem; */
+}
+.input{
+    width: 98%;
+    margin: 0.1rem;
+    
+}
+
+@media(max-width: 800px){
+
+    .editDropZoneDiv{
+        /* border: 2px solid blue; */
+        height: 10rem;
+        width: 28%;
+        display: inline-block;
+    }
+    .editUploadedImage{
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -28,22 +28,13 @@ app.use(session({
     }
 }))
 
-massive(process.env.CONNECTION_STRING) //<-- need to input connection string into .env file
+massive(process.env.CONNECTION_STRING) 
 .then(dbInstance => app.set('db', dbInstance));
-
+console.log('process.env.CONNECTION_STRING', process.env.CONNECTION_STRING)
 const url = '/api' //<-- define endpoint base url here
 
 // app.post(`${url}/contact`, ctrl.create)
-app.get('/api/getUserPostInfo', (req, res) => {
-    const dbInstance = req.app.get('db')
-    dbInstance.join_posts_and_users()
-    .then((postInfo) => {
-        res.status(200).send(postInfo)
-    })
-    .catch((err) => {
-        console.log('err', err)
-    })
-})
+
 app.get('/auth/callback', authCtrl.connect)
 app.get('/api/user-data',userCtrl.getUser)
 app.post('/api/logout', userCtrl.destroyUser)

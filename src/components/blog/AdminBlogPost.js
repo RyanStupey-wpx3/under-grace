@@ -33,6 +33,7 @@ import './blog.css';
         this.fetchPosts = this.fetchPosts.bind(this)
         this.changeRedux = this.changeRedux.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this)
+        this.submit_post = this.submit_post.bind(this)
     }
     getUserInfo(){
         axios.get('/api/user-data')
@@ -130,6 +131,11 @@ import './blog.css';
         axios.put(`/api/posts/${i}`, {...body, post_id: i})
         .then(() => {
             console.log('hit put')
+            if(this.props.postBool === false){
+                this.props.changeBool(true)
+            } else if(this.props.postBool === true) {
+                this.props.changeBool(false)/* change redux state back to false*/
+            }
         }).catch((err) => {
             console.log('err', err)
         })
@@ -138,7 +144,8 @@ import './blog.css';
             const blogs = resp.data
             this.setState({
                    blogs: blogs,
-                   adminButton: "show admin tools"
+                   editStatus: false,
+                   newId: ""
                })
        })
         
@@ -190,15 +197,6 @@ import './blog.css';
  
          })
          
-
-         const displayUserInfoFromJoin = this.state.usersAndPosts.map((elem) => {
-             return (
-                 <div>
-                     <h4>{elem.post_user} posted on: {elem.post_date}</h4>
-                 </div>
-             )
-         })
-
          //if statement checking if there is a user in the current session - no need to check status - > only publis acess except for kathi
          if (this.props.user){
         return (
@@ -207,10 +205,6 @@ import './blog.css';
                     <div className="hero"></div>
                     {this.props.user && <h3>{this.props.user.username}</h3>}
                     <button onClick={() => this.showTools()}>{this.state.adminButton}</button>
-                    {/* <div className="foreignKey">
-                        <h2>userInfo from Join and foreign key:</h2>
-                        <div className="userInfoDiv">{displayUserInfoFromJoin}</div>
-                    </div> */}
                         <div className="newBlogDivAdmin">
                          {this.state.newBlogStatus && <NewBlog handleChange={this.handleChange} postToDb={this.postToDatabase} name={this.state.name} date={this.state.date} title={this.state.title} mainContent={this.state.mainContent}/>}
                          {/*postToDb={this.postToDatabase}*/}

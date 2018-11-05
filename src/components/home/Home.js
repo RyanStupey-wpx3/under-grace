@@ -17,19 +17,6 @@ class Home extends Component {
         }
 
     }
-    // componentWillMount(){
-    //     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=053500b0444e5159d69ef33fa1ed972a`)
-    //     .then((resp) => {
-    //         this.setState({
-    //             weatherApiCall: resp.data,
-    //         })
-    //     }).catch((err) =>{
-    //         console.log('err', err)
-    //     })
-
-    // }
-
-
     componentDidMount(){
         axios.get('/api/user-data')
         .then((resp) => {
@@ -78,15 +65,15 @@ class Home extends Component {
                         
                     </div>
                 </div>
-                    <div className="socialmedia">
-                        <div>
+                    {/* <div className="socialmedia"> */}
+                        {/* <div> */}
                             {/* <div>Temp:{weatherApiCall.main.temp}</div>
                             <div>Humidity:{weatherApiCall.main.humidity}</div>
                             <div>Forecast:{weatherApiCall.weather[0].main}</div>
                             <div>Descriptio{weatherApiCall.weather[0].description}</div> */}
-                        </div>
+                        {/* </div> */}
                         
-                    </div>
+                    {/* </div> */}
                     <div className="galleryLink">
                         <div className="pod i-1"><img src={require('../../images/fire-heart.jpg')}/><p className="bottomPodWords love">Love</p></div>
                         <div className="pod i-2"><img src={require('../../images/image10.jpg')}/><p className="bottomPodWords grace">Grace</p> </div>

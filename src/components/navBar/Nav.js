@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, Route} from 'react-router-dom';
 // import {menuChange} from './menuchange'
 import './nav.css';
 
@@ -16,32 +16,37 @@ export default class Nav extends Component {
         }
         //make state properties have the same value so setstate code is easy
         this.addActive = this.addActive.bind(this)
-        this.changeClass = this.changeClass.bind(this)
+        // this.changeClass = this.changeClass.bind(this)
+        console.log('Route', Route)
     }
 
-    changeClass(id){
-        if(Object.values(this.state).includes('lin active')){
-            this.setState({
-                home: "lin",
-                contact: "lin",
-                about: "lin",
-                blog: "lin",
-                logout: "lin",
-            })
-        }
-        if (this.state[id] === "lin"){
-        this.setState({
-            [id]: "lin active"
-        })
+    // componentDidMount(){
+    //     // if (Route.path)
+    // }
 
-    } else {
-        this.setState({
-            [id]: "lin"
-        })
-    }
+    // changeClass(id){
+    //     if(Object.values(this.state).includes('lin active')){
+    //         this.setState({
+    //             home: "lin",
+    //             contact: "lin",
+    //             about: "lin",
+    //             blog: "lin",
+    //             logout: "lin",
+    //         })
+    //     }
+    //     if (this.state[id] === "lin"){
+    //     this.setState({
+    //         [id]: "lin active"
+    //     })
+
+    // } else {
+    //     this.setState({
+    //         [id]: "lin"
+    //     })
+    // }
     // console.log('Object.values(this.state).includes("lin active")', Object.values(this.state).includes("lin active"))
         // console.log('LinksLi.style.backgroundColor', linksLi.style.backgroundColor)
-    }
+    // }
 
     addActive(id){
         // this.clickedNav.current
@@ -57,13 +62,13 @@ export default class Nav extends Component {
         console.log('this.state', this.state)
         return (
             <header className="navParent">
-                <h1>Grace after fire . . .</h1>
+                <h1 className="graceAfterTitle">Grace after fire . . .</h1>
                 <hr/>
                  <ul  id="navUl"  ref={this.clickedNav}>
-                        <Link to="/"><li   className={this.state.home} key={1} onClick={() => this.changeClass('home')} id="home" className={this.state.home}>HOME</li></Link>
-                        <Link to="/blog"><li  className={this.state.blog}  key={2} onClick={() => this.changeClass('blog')}  id="blog">BLOG</li></Link>
-                        <Link to="/contact"><li  className={this.state.contact}  key={3}  onClick={() => this.changeClass('contact')} id="contact" >CONTACT</li></Link>
-                        <Link to="/about"><li  className={this.state.about}  key={4}  onClick={() => this.changeClass('about')} id="about" >ABOUT</li></Link>
+                        <NavLink to="/home" activeClassName="active"><li   className={this.state.home} key={1}  id="home" >HOME</li></NavLink>
+                        <NavLink to="/blog" activeClassName="active"><li  className={this.state.blog}  key={2}  id="blog">BLOG</li></NavLink>
+                        <NavLink to="/contact" activeClassName="active"><li  className={this.state.contact}  key={3} id="contact" >CONTACT</li></NavLink>
+                        <NavLink to="/about" activeClassName="active"><li  className={this.state.about}  key={4} id="about" >ABOUT</li></NavLink>
                         {/* <Link to="/"><li  className={this.state.logout}  key={5} onClick={() => this.changeClass('logout')} id="logout" >LOGOUT</li></Link> */}
                  </ul>
                  

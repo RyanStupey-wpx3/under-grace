@@ -3,8 +3,6 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import './editBlog.css'
 
-const CLOUDINARY_UPLOAD_PRESET = 'jq5jchmx'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dpnlwo2iw/upload'
 //used force Update in AdminBlogPost showTools
 //need to update onChange methods
 //need to update function post to Database and state 

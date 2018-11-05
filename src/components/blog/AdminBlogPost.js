@@ -49,19 +49,16 @@ import './blog.css';
         .then((resp) => {
             const blogs = resp.data
                  this.setState({
-                        blogs: blogs,
+                        blogs: blogs.sort((a, b) => {
+                            return b.post_id - a.post_id
+                        }),
                         adminButton: "show admin tools"
                     })
             })
             .catch((err) => {
                 console.log('err', err)
             })
-        axios.get('/api/getUserPostInfo')
-        .then((resp) => {
-            this.setState({
-                usersAndPosts: resp.data
-            })
-        })
+        
     }
 
     fetchPosts(){
@@ -69,7 +66,9 @@ import './blog.css';
         .then((resp) => {
             const blogs = resp.data
                  this.setState({
-                        blogs: blogs,
+                        blogs: blogs.sort((a, b) => {
+                            return b.post_id - a.post_id
+                        }),
                         adminButton: "show admin tools",
                         message: "your post has been submitted"
                     })
@@ -143,7 +142,9 @@ import './blog.css';
         .then((resp) => {
             const blogs = resp.data
             this.setState({
-                   blogs: blogs,
+                   blogs: blogs.sort((a, b) => {
+                    return b.post_id - a.post_id
+                }),
                    editStatus: false,
                    newId: ""
                })

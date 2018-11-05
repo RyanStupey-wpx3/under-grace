@@ -36,3 +36,10 @@
     width: 20rem;
     margin: 0 auto;
 }
+
+@media(max-width: 800px){
+    .contentBody{
+        font-size: 18px;
+        width: 90%;
+    }
+}

@@ -4,16 +4,7 @@
 }
 
 .navParent{
-    
     width: 100%;
-    /* background-color: #D7DBDD; */
-    /* background-color: #574E61; */
-
-
-
-
-    
-    /* position: sticky; */
     top: 0rem;
     padding: 5px 0 5px 0;
     z-index: 1;
@@ -66,11 +57,11 @@ ul a {
 }
 
 div ul .lin {
-    border-radius: 7px;
+    border-radius: 3px;
     /* border: 1px solid grey; */
     padding: 0.4rem;
     
-    /* width: 6rem; */
+    width: 9rem;
     text-decoration: none;
     /* font-family: 'News Cycle', sans-serif; */
     font-family: KGBytheGraceofGodimport;
@@ -85,7 +76,8 @@ hr {
 
 
 .active {
-    background-color: #4399F5;
+    background-color: #D6D6D6;
+    /* background-color: #4399F5; */
     color: #7A7A7A;
   }
 
@@ -95,6 +87,9 @@ hr {
         position: relative;
         right: 1rem;
         top: -1.5rem;
+    }
+    header h1 {
+        font-size: 40px;
     }
 
 }

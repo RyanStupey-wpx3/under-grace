@@ -15,13 +15,13 @@ class Home extends Component {
                     <h4>name: Kathi Lang </h4>
                     <h4>email: kathilang58@gmail.com</h4>
                     <hr/>
-                    <h3>I would love to connect with you and promise to respond quickly. Please take a moment to fill out the form below and I will get right back with you.</h3>
-                </div>
+                    <h3>Yes! You came to my website, and now you’re looking at my contact page.  I would love to hear from you – your thoughts, your fascinating story, questions, suggestions for improvements on my website, or a simple hello.  I promise you, I will respond!</h3>
                 <div>
                     <InputInfo/>
                     <h4></h4>
                 </div>
                
+                </div>
                 </div>
                 <footer></footer>
            </div>

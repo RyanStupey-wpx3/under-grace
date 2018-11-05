@@ -6,16 +6,13 @@ import {changeBool} from '../../redux/reducer';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
-// const CLOUDINARY_UPLOAD_PRESET = 'jq5jchmx'
-// const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dpnlwo2iw/upload'
-
 class NewBlog extends Component {
     constructor(props){
         super(props)
 
         this.state = {
             imageUrl: null,
-            name: "stupeyr@gmail.com",
+            name: "",
             date: "",
             title:"",
             mainContent: "",
@@ -81,7 +78,7 @@ class NewBlog extends Component {
             console.log('confirmed to db')
             this.setState({
                 imageUrl: null,
-                name: "stupeyr@gmail.com",
+                name: "",
                 date: "",
                 title:"",
                 mainContent: "",

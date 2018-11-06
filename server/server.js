@@ -47,7 +47,7 @@ app.post('/api/send-email', function (req, res) {
         secure: false,
         port: 3535,
         auth: {
-            user: 'ryan.stupey@gmail.com',
+            user: "kathi.under.fire@gmail.com",
             pass: process.env.PASSWORD
         },
         tls: {
@@ -58,7 +58,7 @@ app.post('/api/send-email', function (req, res) {
 
     let mailOptions = {
         from: req.body.from, // sender address
-        to: 'ryan.stupey@gmail.com', // list of receivers
+        to: 'kathi.under.fire@gmail.com', // list of receivers
         subject: req.body.subject, // Subject line
         html: `<h2>from:${req.body.name}</h2><br/><h2> Email: ${req.body.from}</h2><b>${req.body.message}</b>` // html body
     };

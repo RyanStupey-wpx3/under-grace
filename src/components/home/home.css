@@ -100,4 +100,10 @@ footer {
     .i-3 {
         display: none;
     }
+    .hero{
+        background-image: url('../../images/image10wide.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height:15rem;
+    }
 }

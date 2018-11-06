@@ -88,3 +88,4 @@ const port = 3535
 
 app.listen(port, () => console.log(`Server is listen on port ${port}`))
 
+// npm install react-scripts@2.1.1

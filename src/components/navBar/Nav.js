@@ -62,7 +62,7 @@ export default class Nav extends Component {
         console.log('this.state', this.state)
         return (
             <header className="navParent">
-                <h1 className="graceAfterTitle">Grace after fire . . .</h1>
+                <h1 className="graceAfterTitle">Grace under fire</h1>
                 <hr/>
                  <ul  id="navUl"  ref={this.clickedNav}>
                         <NavLink to="/home" activeClassName="active"><li   className={this.state.home} key={1}  id="home" >HOME</li></NavLink>

@@ -15,7 +15,7 @@ import './blog.css';
 
         this.state = {
             updateFromNewPost: this.props.postBool,
-            newBlogStatus: false,
+            newBlogStatus: true,
             message: '',
             blogs: [],
             adminButton:'',

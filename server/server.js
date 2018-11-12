@@ -30,7 +30,6 @@ app.use(session({
 
 massive(process.env.CONNECTION_STRING) 
 .then(dbInstance => app.set('db', dbInstance));
-console.log('process.env.CONNECTION_STRING', process.env.CONNECTION_STRING)
 const url = '/api' //<-- define endpoint base url here
 
 // app.post(`${url}/contact`, ctrl.create)

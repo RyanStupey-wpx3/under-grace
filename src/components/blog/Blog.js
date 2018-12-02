@@ -64,7 +64,21 @@ class Blog extends Component {
                     {this.state.message && <div>{this.state.message}</div>}
                     <div className="text-cont-outer">
                         <div className="text-content">
-                            <div className="displayBlogsParent">{displayBlogs}</div>
+                            {/* <div className="displayBlogsParent">{displayBlogs}</div> */}
+                            <div className="displayBlogsParent">
+                            <div className="mainBlogContent">
+                                    <div className="mainContent">
+                                        <p className="title">Grace Under Fire</p>
+                                        <h4 className="postUser"> written by: Kathi Lang</h4>
+                                        <img className="" src="https://res.cloudinary.com/dpnlwo2iw/image/upload/v1542297442/i8kdd1tqikuni0yr0ite.jpg"/>
+                                            <div className="blogImageDiv"></div>
+                                            <p>God will challenge us in situations where we feel wholly unprepared - where all we want to do is crawl into a rabbit hole and hide.  When God challenges us, He also provides everything we need to meet that challenge. If we listen. If we trust in Him. If we recognize we can’t do it alone.  God provides grace under fire.</p>
+                                            <p>Following God can be terrifying. Walking in faith takes you down paths where you can’t see what’s in front of you. Yet we don’t walk this path alone.  God was there when all I wanted to do was find that rabbit hole.  God was there during shootings, natural disasters, and personal tragedies.  Time after time, God provided grace under fire.</p>
+                                            <p>I was in the middle of, or on the peripheral of all these situations in a one-year span.  I saw families who lost several loved ones at once, people hurting beyond imagination get up every day to help others.  I saw men crying through unbelievable devastation and loss but still persevering.  I saw hurting women with incredible strength, working every day to help others in any way they could.  I learned grace from watching and talking to broken and hurting people who didn’t give up.  I saw grace as they gave each other a quick hug, sharing their pain, and then get back to work rebuilding their community. I saw God’s grace under fire in action amid everyday people.</p>
+                                    </div>
+                                    <hr className="dividerHr"/>
+                                    </div>
+                            </div>
                          </div>
                          
                     </div>
@@ -81,7 +95,10 @@ class Blog extends Component {
                     {this.state.message && <div>{this.state.message}</div>}
                     <div className="text-cont-outer">
                         <div className="text-content">
-                            <div className="displayBlogsParent">{displayBlogs}</div>
+                            {/* <div className="displayBlogsParent">{displayBlogs}</div> */}
+                            <div className="displayBlogsParent">
+                            
+                            </div>
                          </div>
                          
                     </div>

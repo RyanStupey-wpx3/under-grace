@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {changeBool} from '../../redux/reducer';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import StatefulEditor from '../StatefulEditor/StatefulEditor'
+// import {Link, RichText, Date} from 'prismic-reactjs';
 
 class NewBlog extends Component {
     constructor(props){
@@ -144,6 +146,7 @@ class NewBlog extends Component {
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="name" value={this.state.name}  className="newBlogusernameInput " placeholder="username: bring in through redux"/>
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="date" value={this.state.date} className="newBlogdateInput " placeholder="date of: "/>
                     <input type="text"onChange={(e) => this.handleChange(e)}  name="title" value={this.state.title} className="newBlogtitleInput " placeholder="title"/>
+                    {/* <div className="newBlogblogContent"><StatefulEditor  name="mainContent" onChange={(e) => this.handleChange(e)} value={this.state.mainContent} /></div> */}
                     <textarea onChange={(e) => this.handleChange(e)}  name="mainContent" value={this.state.mainContent} className="newBlogblogContent " placeholder="blog message" />
                     <input className="newBlogsubmitButton" type="submit" onClick={() => this.postToDatabase()} value="post"/>
                     {/* pass postToDatabase as props down from adminblogPost */}

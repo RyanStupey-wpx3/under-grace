@@ -71,14 +71,16 @@
 .newBlogblogContent{
     position: relative;
     display: block;
-    /* left: 9rem; */
-    float: right;
+    left: 29%;
+    /* float: right; */
     top: 0rem;
     /* margin: 0 auto; */
-    height: 11.5rem;
-    width:70%;
-    overflow: hidden;
-    resize: none;
+    height: 40%;
+    box-sizing: border-box;
+
+	width: 71%;
+    resize: both;
+    overflow: auto;
 }
 .newBlogsubmitButton {
     /* border: 2px solid yellow; */

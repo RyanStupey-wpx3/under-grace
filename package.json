@@ -6,17 +6,17 @@
   "dependencies": {
     "animated": "^0.2.2",
     "axios": "^0.17.1",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "cloudinary": "^1.10.0",
-    "cors": "^2.8.4",
+    "cors": "^2.8.5",
     "cors-prefetch-middleware": "^1.0.0",
     "dotenv": "^5.0.0",
-    "express": "^4.16.2",
+    "express": "^4.16.4",
     "express-session": "^1.15.6",
     "images-upload-middleware": "^1.1.1",
-    "massive": "^4.6.4",
-    "nodemailer": "^4.6.0",
-    "now": "^11.1.7",
+    "massive": "^4.8.3",
+    "nodemailer": "^4.6.8",
+    "now": "^11.5.2",
     "nuka-carousel": "^3.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -49,5 +49,11 @@
     "/api": {
       "target": "http://localhost:3535"
     }
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

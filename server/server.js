@@ -30,17 +30,18 @@ app.use(session({
 
 massive(process.env.CONNECTION_STRING) 
 .then(dbInstance => app.set('db', dbInstance));
+
 const url = '/api' //<-- define endpoint base url here
 
-// app.post(`${url}/contact`, ctrl.create)
+
 
 app.get('/auth/callback', authCtrl.connect)
 app.get('/api/user-data',userCtrl.getUser)
 app.post('/api/logout', userCtrl.destroyUser)
 app.post('/api/send-email', function (req, res) {
-    console.log('hit!')
 
-    console.log("req.body", req.body )
+
+
     let transporter = nodeMailer.createTransport({
         service: 'gmail',
         secure: false,

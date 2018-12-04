@@ -13,6 +13,7 @@
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "http-proxy-middleware": "^0.19.1",
     "images-upload-middleware": "^1.1.1",
     "massive": "^4.6.4",
     "nodemailer": "^4.6.0",
@@ -24,7 +25,7 @@
     "react-images-upload": "^1.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.1.1",
     "react-transition-group": "^2.3.1",
     "redux": "^3.7.2",
     "superagent": "^3.8.2"
@@ -40,12 +41,10 @@
   "now": {
     "alias": "grace-after-fire"
   },
-  "proxy": {
-    "/auth/callback": {
-      "target": "http://localhost:3535"
-    },
-    "/api": {
-      "target": "http://localhost:3535"
-    }
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
